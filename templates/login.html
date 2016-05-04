@@ -1,0 +1,55 @@
+{% extends "index.html" %}
+{% block title %}Login{% endblock %}
+
+
+{% block content %}
+<div class="container">
+  <div class="col-sm-offset-4 col-sm-4">
+    <h1>Login</h1>
+    <div class="login-form">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" class="form-control" id="username" placeholder="Username">
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" id="password" placeholder="Password">
+      </div>
+      <button type="text" class="btn btn-primary" id="login">Login</button>
+    </div>
+    <hr>
+    
+    <!-- <a href="/signup">Don't have an account?</a> -->
+
+  </div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="static/built.min.js"></script>
+<script>
+  var app = Built.App('blt6f9b218391b44387');    
+  // 'blt5d4sample2633b' is a dummy Application API key
+  // 'student' is uid of an class on Built.io Backend
+  var user = app.User();
+
+  $('#login').click(function(){
+    var u = $('#username').val();
+    var p = $('#password').val();
+    user
+    .login(u, p)
+    .then(function(user) {
+        // user logged in successfully
+        console.log(user.toJSON())
+        var data = user.toJSON();
+        //$.post('/login', data);
+    }, function(error) {
+        // some error has occurred
+        // refer to the 'error' object for more details
+    });
+  });
+
+
+
+</script>
+{% endblock %}
