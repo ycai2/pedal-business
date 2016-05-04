@@ -2,7 +2,7 @@
 {% block title %}Sign Up For Pedal{% endblock %}
 {% block content %}
   <form class="form-horizontal" id="signup-form">
-    <fieldset>
+    <fieldset class="account-info">
       <legend>Manager Account</legend>
       <!-- Text input-->
       <div class="form-group">
@@ -20,6 +20,18 @@
           <input id="password" name="password" type="password" placeholder="" class="form-control input-md" required>
           
         </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="password-confirm">*Comfirm Password</label>
+        <div class="col-md-4">
+          <input id="password-confirm" name="password-confirm" type="password" placeholder="" class="form-control input-md" required>
+          
+        </div>
+      </div>
+
+      <div class="col-md-4">
+          <h3 id="notifier"></h3>
       </div>
 
     </fieldset>
@@ -41,7 +53,7 @@
         <div class="control-group">
           <label class="control-label" for="street">Street</label>
           <div class="controls">
-            <input id="street" name="street" type="text" placeholder="100 Union Sq." class="input-medium" required="">
+            <input id="street" name="street" type="text" placeholder="100 Union Sq." class="input-medium" required>
             
           </div>
         </div>
@@ -50,7 +62,7 @@
         <div class="control-group">
           <label class="control-label" for="city">City</label>
           <div class="controls">
-            <input id="city" name="city" type="text" placeholder="City Name" class="input-medium" required="">
+            <input id="city" name="city" type="text" placeholder="City Name" class="input-medium" required>
             
           </div>
         </div>
@@ -82,7 +94,7 @@
         <div class="control-group">
           <label class="control-label" for="phone">Phone</label>
           <div class="controls">
-            <input id="phone" name="phone" type="text" placeholder="xxx-xxx-xxxx" class="input-medium" required="">
+            <input id="phone" name="phone" type="text" placeholder="xxx-xxx-xxxx" class="input-medium" required>
             
           </div>
         </div>
@@ -112,6 +124,8 @@
         </div>
       </div>
     </fieldset>
+
+    
     
     <div>
       <legend>Schedule</legend>
@@ -159,18 +173,14 @@
       </table>
     </div>
     <hr>
-    <button type="button" id="submit-details" class="btn btn-success">Submit</button>
+    <button type="button" id="submit-signup" class="btn btn-success">Submit</button>
   </form>
 
 {% endblock %}
 {% block js %}
 <script src="static/jquery.timepicker.min.js"></script>
 <script src="static/built.min.js"></script>
-<script>
-  var table = $('.table td input');
-  for (var i = 0; i < table.length; i++){
-    $(table[i]).timepicker();
-  }
-</script>
+<script src="static/signup.js"></script>
+
 {% endblock %}
 
