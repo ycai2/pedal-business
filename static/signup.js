@@ -45,19 +45,11 @@
       return;
     }
 
-    var username_email = username.val() + "@pedal.com";
-    
-    // check if user exists
+    var username_email = username.val() + "@pedal.edu";
+    //if user does not exist, create a business object and register the user
     var user = Built.App('blt6f9b218391b44387').User();
-    user.fetchUserUidByEmail('abc@email.com')
-    .then(function(user){
-      $('#notifier').text("user already exists!");
-      return;
-    });
-
-    // if user does not exist, create a business object and register the user
     user
-    .register("1020967309@qq.com", "wyh4788", "wyh4788", {business: ''})
+    .register(username_email, password.val(), password_confirm.val())
     .then(function(user) {
         // user registered successfully
         console.log(user.toJSON())
