@@ -59,9 +59,6 @@
         // refer to the 'error' object for more details
     });
 
-    var Business = Built.App('blt6f9b218391b44387').Class('business').Object;
-    var business = Business();
-
     // retrive hours
     var table = $('.table td');
     var day = "sun";
@@ -77,6 +74,9 @@
           }
     }
      
+    // create business object
+    var Business = Built.App('blt6f9b218391b44387').Class('business').Object;
+    var business = Business();
     business = business.assign({
       res_name: $('#res_name').val(),
       address: {
@@ -89,14 +89,26 @@
       deals: $('#deals').val(),
       hours: hours
     });
-
     business
     .save()
     .then(function(business) {
       // object created successfully
-      console.log(business.toJSON());
+      console.log(business.toJSON().uid);
     }, function(err) {
       $('#notifier').text("something is wrong. please check your input!");
+    });
+
+    // assign business to the user
+    user
+    .updateUserProfile({
+        business: business.toJSON().uid,
+    })
+    .then(function(user) {
+        // user profile update successfully
+        console.log(user.toJSON())
+    }, function(error) {
+        // some error has occurred
+        // refer to the 'error' object for more details
     });
 
   });
