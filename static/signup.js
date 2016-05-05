@@ -10,7 +10,6 @@
 
   // Listen for the jQuery ready event on the document
   $(function() {
-
     // The DOM is ready!
     var table = $('.ui-timepicker-input');
     for (var i = 0; i < table.length; i++){
@@ -18,20 +17,13 @@
     }
   });
 
-  // The rest of the code goes here!
-  // 'blt5d4sample2633b' is a dummy Application API key
-  //var app = Built.App('blt6f9b218391b44387');
-  //var user = app.User();
 
   var $username;
   var $password;
   var $password_confirm;
   var username_email;
 
-  // if (password != password_confirm){
-  //   console.log
-  // }
-
+  // when submit button is clicked
   $('#submit-signup').click(function(){
     var account_info = $('.account-info input');
     account_info.each(function(index){
@@ -47,21 +39,25 @@
     password = $('#password');
     password_confirm = $('#password-confirm');
 
-    //check if the passwords are the same
+    // check if the passwords are the same
     if (password.val() != password_confirm.val()){
       $('#notifier').text("please enter the same password!");
       return;
     }
 
-    username_email = ('#username');
     var username_email = username.val() + "@pedal.com";
-    console.log(username_email);
-    console.log(password.val());
-    console.log(password_confirm.val());
-
+    
+    // check if user exists
     var user = Built.App('blt6f9b218391b44387').User();
+    user.fetchUserUidByEmail('abc@email.com')
+    .then(function(user){
+      $('#notifier').text("user already exists!");
+      return;
+    });
+
+    // if user does not exist, create a business object and register the user
     user
-    .register("1020967309@qq.com", "wyh4788", "wyh4788")
+    .register("1020967309@qq.com", "wyh4788", "wyh4788", {business: ''})
     .then(function(user) {
         // user registered successfully
         console.log(user.toJSON())
@@ -72,8 +68,7 @@
     });
 
   });
-
-
+   
   // function get_data(business_id) {
   //   var business = app.Class('business').Object(business_id);
     
@@ -142,12 +137,6 @@
   //   // refer to the 'error' object for more details
   //   });
   // };
-
-
-  
-
-
-
 
 }
 ));
