@@ -2,4 +2,4 @@
 Web interface for businesses in Pedal
 
 ===
-by Yisheng Cai - 16' & Yinghuan Wang - 18' @ Trinity College
+by _Yisheng Cai_ - 16' & _Yinghuan Wang_ - 18' @ Trinity College
