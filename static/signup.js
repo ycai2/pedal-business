@@ -38,38 +38,13 @@
     username = $('#username');
     password = $('#password');
     password_confirm = $('#password-confirm');
+    var username_email = username.val() + "@pedal.com";
 
     // check if the passwords are the same
     if (password.val() != password_confirm.val()){
       $('#notifier').text("please enter the same password!");
       return;
     }
-
-    var username_email = username.val() + "@pedal.com";
-    var user = Built.App('blt6f9b218391b44387').User();
-    user
-    .register(username_email, password.val(), password_confirm.val())
-    .then(function(user) {
-      //login for updating business id
-      user
-      .login(username_email, password.val())
-      .then(function(user) {
-          // user logged in successfully
-          console.log("logged in");
-      }, function(error) {
-          console.log("cannot login");
-          console.log(username_email);
-          console.log(password.val());
-          // some error has occurred
-          // refer to the 'error' object for more details
-      });
-        console.log(user.toJSON());
-    }, function(error) {
-        console.log(error);
-        $('#notifier').text("something wrong with your username or password.");
-        // some error has occurred
-        // refer to the 'error' object for more details
-    });
 
     // retrive hours
     var table = $('.table td');
@@ -107,24 +82,24 @@
     .then(function(business) {
       // object created successfully
       console.log(business.toJSON().uid);
+
+      // create user 
+      var user = Built.App('blt6f9b218391b44387').User();
+      user
+      .register(username_email, password.val(), password_confirm.val(), {business: business.toJSON().uid})
+      .then(function(user) {
+        console.log(user.toJSON());
+
+      }, function(error) {
+        console.log(error);
+        $('#notifier').text("something wrong with your username or password.");
+        // some error has occurred
+        // refer to the 'error' object for more details
+      });
+
     }, function(err) {
       $('#notifier').text("something is wrong. please check your input!");
     });
-
-    // assign business to the user
-    user
-    .updateUserProfile({
-        business: business.toJSON().uid,
-    })
-    .then(function(user) {
-        // user profile update successfully
-        console.log(user.toJSON());
-    }, function(error) {
-        console.log("cannot wire up");
-        // some error has occurred
-        // refer to the 'error' object for more details
-    });
-
   });
 
 }
