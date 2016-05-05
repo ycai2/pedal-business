@@ -45,13 +45,25 @@
       return;
     }
 
-    var username_email = username.val() + "@pedal.edu";
+    var username_email = username.val() + "@pedal.com";
     var user = Built.App('blt6f9b218391b44387').User();
     user
     .register(username_email, password.val(), password_confirm.val())
     .then(function(user) {
-        // user registered successfully
-        console.log(user.toJSON())
+      //login for updating business id
+      user
+      .login(username_email, password.val())
+      .then(function(user) {
+          // user logged in successfully
+          console.log("logged in");
+      }, function(error) {
+          console.log("cannot login");
+          console.log(username_email);
+          console.log(password.val());
+          // some error has occurred
+          // refer to the 'error' object for more details
+      });
+        console.log(user.toJSON());
     }, function(error) {
         console.log(error);
         $('#notifier').text("something wrong with your username or password.");
@@ -89,6 +101,7 @@
       deals: $('#deals').val(),
       hours: hours
     });
+
     business
     .save()
     .then(function(business) {
@@ -105,8 +118,9 @@
     })
     .then(function(user) {
         // user profile update successfully
-        console.log(user.toJSON())
+        console.log(user.toJSON());
     }, function(error) {
+        console.log("cannot wire up");
         // some error has occurred
         // refer to the 'error' object for more details
     });
