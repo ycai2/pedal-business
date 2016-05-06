@@ -93,12 +93,23 @@
       }, function(error) {
         console.log(error);
         $('#notifier').text("something wrong with your username or password.");
+        $('#notifier').text("something is wrong. please check your input!");
+
+        // delete the business
+        console.log("this is the bid");
+        console.log(business.toJSON().uid);
+        var project = Built.App('blt6f9b218391b44387').Class('business').Object(business.toJSON().uid); 
+        project.delete()
+        .then(function(){
+         console.log('object deleted successfully')
+        });
         // some error has occurred
         // refer to the 'error' object for more details
       });
 
-    }, function(err) {
-      $('#notifier').text("something is wrong. please check your input!");
+    },function(err) {
+      console.log("cannot create business");
+      
     });
   });
 
