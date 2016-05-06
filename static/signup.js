@@ -60,6 +60,9 @@
             hours[day]['close'] = $(table[i]).find('input').val();
           }
     }
+
+    //retrive delivery option
+    console.log($('#delivery').val());
      
     // create business object
     var Business = Built.App('blt6f9b218391b44387').Class('business').Object;
@@ -69,11 +72,14 @@
       address: {
                 street: $('#street').val(),
                 city: $('#city').val(),
-                state: $('#state').val()
+                state: $('#state').val(),
+                zipcode: $('#zipcode').val(),
                 },
       phone: $('#phone').val(),
       description: $('#description').val(),
       deals: $('#deals').val(),
+      events: $('#events').val(),
+      delivery: $('#delivery').val(),
       hours: hours
     });
 
@@ -89,7 +95,7 @@
       .register(username_email, password.val(), password_confirm.val(), {business: business.toJSON().uid})
       .then(function(user) {
         console.log(user.toJSON());
-
+ 
       }, function(error) {
         console.log(error);
         $('#notifier').text("something wrong with your username or password.");
@@ -108,6 +114,7 @@
       });
 
     },function(err) {
+      console.log(error);
       console.log("cannot create business");
       
     });

@@ -67,7 +67,8 @@
                    .set('address', {
                                     'street': $('#street').val(),
                                     'city': $('#city').val(),
-                                    'state': $('#state').val()
+                                    'state': $('#state').val(),
+                                    'zipcode': $('#zipcode').val()
                                   })
                    .set('phone', $('#phone').val())
                    .set('description', $('#description').val())
