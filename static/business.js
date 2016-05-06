@@ -91,9 +91,8 @@
 
 
   $('#login-btn').click(function(){
-    var business_name = $('#username').val() + "@trincoll.edu";
+    var business_name = $('#username').val() + "@pedal.com";
     var password = $('#password').val();
-
     user
     .login(business_name, password)
     .then(function(user) {
@@ -106,14 +105,10 @@
           $(table[i]).timepicker();
         }
         get_data(business_id);
-
-        
-
-
-        
     }, function(error) {
         // some error has occurred
         // refer to the 'error' object for more details
+        console.log(error);
     });
     
   });
