@@ -63,12 +63,18 @@
         // console.log(b['hours']);
 
         business = business
-                   .set('res_name', $('#res_name').val())
+                   .set('res_name', escape($('#res_name').val()))
                    .set('address', {
+<<<<<<< Updated upstream
                                     'street': $('#street').val(),
                                     'city': $('#city').val(),
                                     'state': $('#state').val(),
                                     'zipcode': $('#zipcode').val()
+=======
+                                    'street': escape($('#street').val()),
+                                    'city': escape($('#city').val()),
+                                    'state': escape($('#state').val())
+>>>>>>> Stashed changes
                                   })
                    .set('phone', $('#phone').val())
                    .set('description', $('#description').val())
@@ -90,9 +96,8 @@
     });
   };
 
-
   $('#login-btn').click(function(){
-    var business_name = $('#username').val() + "@pedal.com";
+    var business_name = escape($('#username').val() + "@pedal.com");
     var password = $('#password').val();
     user
     .login(business_name, password)
@@ -111,7 +116,6 @@
         // refer to the 'error' object for more details
         console.log(error);
     });
-    
   });
 
 
