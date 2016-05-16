@@ -1,8 +1,8 @@
 // IIFE - Immediately Invoked Function Expression
-(function(yourcode) {
+(function(main) {
 
   // The global jQuery object is passed as a parameter
-  yourcode(window.jQuery, window, document);
+  main(window.jQuery, window, document);
 
 }(function($, window, document) {
 
@@ -65,16 +65,10 @@
         business = business
                    .set('res_name', escape($('#res_name').val()))
                    .set('address', {
-<<<<<<< Updated upstream
-                                    'street': $('#street').val(),
-                                    'city': $('#city').val(),
-                                    'state': $('#state').val(),
-                                    'zipcode': $('#zipcode').val()
-=======
                                     'street': escape($('#street').val()),
                                     'city': escape($('#city').val()),
-                                    'state': escape($('#state').val())
->>>>>>> Stashed changes
+                                    'state': escape($('#state').val()),
+                                    'zipcode': $('#zipcode').val()
                                   })
                    .set('phone', $('#phone').val())
                    .set('description', $('#description').val())
