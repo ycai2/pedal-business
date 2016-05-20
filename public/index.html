@@ -13,7 +13,7 @@
   </head>
   <body>
     <div class="container">
-      <div class="card blue-grey darken-1 center">
+      <div id="login-card" class="card blue-grey darken-1 center">
         <div class="card-content white-text">
           <span class="card-title">Pedal For Business</span>
           <form class="container">
@@ -71,6 +71,18 @@
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyA-FPbX1XaZpynBlOE9xNaQWKr5AYKqQWU",
+        authDomain: "pedal-business.firebaseapp.com",
+        databaseURL: "https://pedal-business.firebaseio.com",
+        storageBucket: "pedal-business.appspot.com",
+      };
+      firebase.initializeApp(config);
+    </script>
+
     <script>
       $(document).ready(function(){
         // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
