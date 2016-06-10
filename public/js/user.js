@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 var app = angular.module("pedal-business", ["firebase"]);
 
 // let's create a re-usable factory that generates the $firebaseAuth instance
@@ -61,3 +62,9 @@ app.controller("UserController", ["$scope", "Auth",
     };
   }
 ]);
+=======
+angular.module("pedal-business", [])
+.controller("userController", function($scope) {
+  
+});
+>>>>>>> firebase-test-wyh
