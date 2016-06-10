@@ -20,8 +20,8 @@
     <!-- AngularFire -->
     <script src="https://cdn.firebase.com/libs/angularfire/2.0.1/angularfire.min.js"></script>
   </head>
-  <body ng-app="pedal-business" ng-controller="userController">
-    <div class="container">
+  <body ng-app="pedal-business">
+    <div class="container" ng-controller="UserController" ng-hide="firebaseUser">
       <div id="login-card" class="card blue-grey darken-1 center">
         <div class="card-content white-text">
           <span class="card-title">Pedal For Business</span>
@@ -29,12 +29,12 @@
             <div class="container">
 
               <div class="input-field">
-                <input id="username" type="text" class="validate" ng-model="credentials.username">
+                <input id="username" type="text" class="validate" ng-model="username">
                 <label for="username">Username</label>
               </div>
 
               <div class="input-field">
-                <input id="password" type="password" class="validate" ng-model="credentials.password">
+                <input id="password" type="password" class="validate" ng-model="password">
                 <label for="password">Password</label>
               </div>
 
@@ -43,7 +43,7 @@
         </div>
 
         <div class="card-action">
-          <a class="waves-effect waves-light btn" id="login-btn">Sign In</a>
+          <a class="waves-effect waves-light btn" id="login-btn" ng-click="signIn(username, password)">Sign In</a>
           <a class="waves-effect waves-light btn-flat modal-trigger" href="#signup-form">Register</a>
         </div>
       </div>
@@ -54,29 +54,29 @@
           <br>
           <form class="container">
             <div class="input-field">
-              <input id="new_business_name" type="text" class="validate">
+              <input id="new_business_name" type="text" class="validate" ng-model="new_username">
               <label for="new_business_name">Username</label>
             </div>
 
             <div class="input-field">
-              <input id="new_password" type="password" class="validate">
+              <input id="new_password" type="password" class="validate" ng-model="new_password">
               <label for="new_password">Password</label>
             </div>
 
             <div class="input-field">
-              <input id="new_password_confirm" type="password" class="validate">
+              <input id="new_password_confirm" type="password" class="validate" ng-model="new_password_confirm">
               <label for="new_password_confirm">Confirm Password</label>
             </div>
           </form>
         </div>
         <div class="modal-footer">
           <a href="#" class="modal-close btn-flat">Close</a>
-          <a href="#" class="modal-action waves-effect waves-green btn">Register</a>
+          <a href="#" class="modal-action waves-effect waves-green btn" ng-click="createUser()">Register</a>
         </div>
       </div>
     </div>
 
-    <div id="interface-card">
+    <div id="interface-card" ng-show="firebaseUser">
       <nav class=" deep-purple darken-1">
         <div class="nav-wrapper container">
           <a href="#" class="brand-logo">Pedal Interface</a>
