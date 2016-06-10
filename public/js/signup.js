@@ -1,6 +1,7 @@
 var login = document.getElementById('login-card');
 var interface = document.getElementById('interface-card');
 $(function(){
+  
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
       // User is signed in.
@@ -25,7 +26,8 @@ $(function(){
 
     } else {
       // No user is signed in.
-      interface.setAttribute('hidden', 'true');
+      console.log('no user');
+      login.removeAttribute('hidden');
       $('#login-btn').click(function() {
         var username = $('#username').val();
         var pw = $('#password').val();
