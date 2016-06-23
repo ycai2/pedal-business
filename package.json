@@ -1,11 +1,10 @@
 {
   "name": "pedal-business",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "P",
+  "main": "app.js",
   "dependencies": {
-    "express": "^4.13.4",
-    "firebase": "^3.0.4"
+    "express": "^4.14.0"
   },
   "devDependencies": {},
   "scripts": {
@@ -15,7 +14,7 @@
     "type": "git",
     "url": "git+https://github.com/ycai2/pedal-business.git"
   },
-  "author": "",
+  "author": "Yisheng Cai",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/ycai2/pedal-business/issues"
