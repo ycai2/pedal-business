@@ -35,7 +35,8 @@
           templateUrl: "pages/404.html"
         })
     })
-    .controller('MainController', MainController);
+    .controller('MainController', MainController)
+    .controller('RegisterController', RegisterController);
 
 
 
@@ -43,6 +44,12 @@
   function MainController() {
     var vm = this;
     vm.message = 'Everyone come and see how good I look!';
+  }
+
+  function RegisterController() {
+    var vm = this;
+
+    
   }
 
   // function AboutController() {

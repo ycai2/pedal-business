@@ -6,17 +6,24 @@
   <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <!-- Compiled and minified CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
-
+  <link rel="stylesheet" href="css/main.css">
   
 </head>
 <body>
   <nav>
-    <div class="nav-wrapper orange accent-3">
-      <a ui-sref="home" class="brand-logo"> Pedal</a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a ui-sref="signin">Sign In</a></li>
-        <li><a ui-sref="about">About</a></li>
-      </ul>
+    <div class="nav-wrapper cyan darken-1">
+      <div class="navbar-wrapper">
+        <a ui-sref="home" class="brand-logo"><img id="navbar-icon" src="img/pedal_orange_text_and_logo.png"></a>
+        <a href="#" data-activates="nav-mobile" class="button-collapse right"><i class="material-icons">menu</i></a>
+        <ul id="nav" class="right hide-on-med-and-down">
+          <li><a ui-sref="signin">Sign In</a></li>
+          <li><a ui-sref="about">About</a></li>
+        </ul>
+        <ul id="nav-mobile" class="side-nav">
+          <li><a ui-sref="signin">Sign In</a></li>
+          <li><a ui-sref="about">About</a></li>
+        </ul>
+      </div>
     </div>
   </nav>
 
@@ -29,6 +36,15 @@
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.7/angular-route.min.js"></script>
   <script src="js/angular-ui-router.min.js"></script>
+  <script>
+    $( document ).ready(function(){
+      $(".button-collapse").sideNav({
+        edge: 'right', // Choose the horizontal origin
+        closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
+      
+      });
+    })
+  </script>
   <script src="js/script.js"></script>
 </body>
 </html>
