@@ -3,16 +3,12 @@
 [debug] CLI Version:  3.0.2
 [debug] Platform:     darwin
 [debug] Node Version: v5.4.0
-<<<<<<< HEAD
-[debug] Time:         Sat May 21 2016 22:42:26 GMT-0400 (EDT)
-=======
-[debug] Time:         Wed Jun 08 2016 21:47:05 GMT-0400 (EDT)
->>>>>>> firebase-test-wyh
+[debug] Time:         Fri Jun 24 2016 10:19:31 GMT-0400 (EDT)
 [debug] ----------------------------------------------------------------------
 [debug] 
 [info] Starting Firebase development server...
 [info] 
-[info] Project Directory: /Users/yisheng/Documents/workspace/Websites/pedal-business
+[info] Project Directory: /Users/yisheng/Documents/sandbox/javascript/angular/singlepage
 [info] Public Directory: public
 [info] 
 [info] Server listening at: http://localhost:5000
