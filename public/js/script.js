@@ -2,10 +2,11 @@
   'use strict';
 
   angular
-    .module('pedal', ['ui.router'])
-    .config(function($stateProvider, $urlRouterProvider) {
+    .module('pedal', ['ui.router', 'google.places'])
+    .config(function($stateProvider, $urlRouterProvider, $locationProvider) {
       // For any unmatched url, redirect to /state1
-      $urlRouterProvider.when("", "/404");
+      $locationProvider.html5Mode(true);
+      $urlRouterProvider.when("", "/");
       $urlRouterProvider.otherwise("/404");
 
 
@@ -16,7 +17,8 @@
         })
         .state('register', {
           url: "/register",
-          templateUrl: "pages/register.html"
+          templateUrl: "pages/register.html",
+          controller: "RegisterController"
         })
         .state('signin', {
           url: "/signin",
@@ -48,8 +50,12 @@
 
   function RegisterController() {
     var vm = this;
+    vm.user = {};
+    vm.place = null;
+    vm.register = function(user) {
 
-    
+    };
+
   }
 
   // function AboutController() {

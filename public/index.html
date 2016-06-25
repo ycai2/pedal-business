@@ -7,7 +7,7 @@
   <!-- Compiled and minified CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
   <link rel="stylesheet" href="css/main.css">
-  
+  <base href="/">
 </head>
 <body>
   <nav>
@@ -35,13 +35,15 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.7/angular-route.min.js"></script>
+
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-FPbX1XaZpynBlOE9xNaQWKr5AYKqQWU&libraries=places"></script>
+  <script src="js/autocomplete.js"></script>
   <script src="js/angular-ui-router.min.js"></script>
   <script>
-    $( document ).ready(function(){
+    $(document).ready(function(){
       $(".button-collapse").sideNav({
         edge: 'right', // Choose the horizontal origin
         closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
-      
       });
     })
   </script>
