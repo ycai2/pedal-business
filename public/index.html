@@ -11,7 +11,7 @@
 </head>
 <body>
   <nav>
-    <div class="nav-wrapper cyan darken-1">
+    <div class="nav-wrapper black">
       <div class="navbar-wrapper">
         <a ui-sref="home" class="brand-logo"><img id="navbar-icon" src="img/pedal_orange_text_and_logo.png"></a>
         <a href="#" data-activates="nav-mobile" class="button-collapse right"><i class="material-icons">menu</i></a>
@@ -27,8 +27,7 @@
     </div>
   </nav>
 
-  <div class="container" ui-view></div>
-
+  <div ui-view></div>
 
   <!-- Compiled and minified JavaScript -->
   <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
@@ -41,11 +40,13 @@
   <script src="js/angular-ui-router.min.js"></script>
   <script>
     $(document).ready(function(){
+      $('.parallax').parallax();
       $(".button-collapse").sideNav({
         edge: 'right', // Choose the horizontal origin
         closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
       });
     })
+
   </script>
   <script src="js/script.js"></script>
 </body>
