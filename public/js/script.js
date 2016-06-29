@@ -40,6 +40,10 @@
           url: "/about",
           templateUrl: "pages/about.html"
         })
+        .state('management', {
+          url: "/management",
+          templateUrl: "pages/management.html"
+        })
         .state('404', {
           url: "/404",
           templateUrl: "pages/404.html"
