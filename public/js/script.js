@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('pedal', ['ui.router', 'google.places'])
+    .module('pedal', ['ui.router', 'google.places', 'ui.materialize'])
     .config(function($stateProvider, $urlRouterProvider, $locationProvider) {
       // For any unmatched url, redirect to /state1
       $locationProvider.html5Mode(true);
@@ -24,6 +24,14 @@
           url: "/signin",
           templateUrl: "pages/signin.html"
         })
+        // .state('signin.signup', {
+        //   url: "/signup",
+        //   onEnter: ['$stateParams', '$state', '$modal', '$resource', function($stateParams, $state, $modal, $resource) {
+        //     $modal.open({
+        //       templateUrl: "pages/signup_modal.html"
+        //     });
+        //   }]
+        // })
         .state('profile', {
           url: "/profile",
           templateUrl: "pages/profile.html"

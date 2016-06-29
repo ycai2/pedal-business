@@ -10,22 +10,24 @@
   <base href="/">
 </head>
 <body>
-  <nav>
-    <div class="nav-wrapper black">
-      <div class="navbar-wrapper">
-        <a ui-sref="home" class="brand-logo"><img id="navbar-icon" src="img/pedal_orange_text_and_logo.png"></a>
-        <a href="#" data-activates="nav-mobile" class="button-collapse right"><i class="material-icons">menu</i></a>
-        <ul id="nav" class="right hide-on-med-and-down">
-          <li><a ui-sref="signin">Sign In</a></li>
-          <li><a ui-sref="about">About</a></li>
-        </ul>
-        <ul id="nav-mobile" class="side-nav">
-          <li><a ui-sref="signin">Sign In</a></li>
-          <li><a ui-sref="about">About</a></li>
-        </ul>
+  <div class="navbar-fixed">
+    <nav>
+      <div class="nav-wrapper teal lighten-3">
+        <div class="navbar-wrapper">
+          <a ui-sref="home" class="brand-logo"><img id="navbar-icon" src="img/pedal_orange_text_and_logo.png"></a>
+          <a href="#" data-activates="nav-mobile" class="button-collapse right"><i class="material-icons">menu</i></a>
+          <ul id="nav" class="right hide-on-med-and-down">
+            <li><a ui-sref="signin" class="teal-text text-darken-3">Sign In</a></li>
+            <li><a ui-sref="about" class="teal-text text-darken-3">About</a></li>
+          </ul>
+          <ul id="nav-mobile" class="side-nav">
+            <li><a ui-sref="signin" class="teal-text text-darken-3">Sign In</a></li>
+            <li><a ui-sref="about" class="teal-text text-darken-3">About</a></li>
+          </ul>
+        </div>
       </div>
-    </div>
-  </nav>
+    </nav>
+  </div>
 
   <div ui-view></div>
 
@@ -38,9 +40,12 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-FPbX1XaZpynBlOE9xNaQWKr5AYKqQWU&libraries=places"></script>
   <script src="js/autocomplete.js"></script>
   <script src="js/angular-ui-router.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-materialize/0.1.9/angular-materialize.min.js"></script>
+
   <script>
     $(document).ready(function(){
       $('.parallax').parallax();
+
       $(".button-collapse").sideNav({
         edge: 'right', // Choose the horizontal origin
         closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
