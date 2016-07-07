@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+<head>
+  <title>Pedal Interface</title>
+  <!--Import Google Icon Font-->
+  <link rel="stylesheet" href="http://fonts.googleapis.com/icon?family=Material+Icons">
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+  <link rel="stylesheet" href="stylesheets/main.css">
+</head>
+<body>
+  <div class="app" ng-app="pedal">
+    <div class="navbar-fixed teal" ng-controller="NavController as navCtrl">
+      <nav>
+        <div class="nav-wrapper">
+          <a href="/" class="brand-logo">Pedal</a>
+          <ul class="right hide-on-med-and-down">
+            <li><a ng-if="navCtrl.firebaseUser" ui-sref="signin">Sign Out</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+
+    <div ui-view></div>
+  </div>
+  <!-- jQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+  <!-- Materialize -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+
+  <!-- AngularJS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-animate.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-aria.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-messages.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.0-alpha0/angular-ui-router.js"></script>
+
+  <!-- AngularFire -->
+  <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase.js"></script>
+  <script src="https://cdn.firebase.com/libs/angularfire/2.0.1/angularfire.min.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyA-FPbX1XaZpynBlOE9xNaQWKr5AYKqQWU",
+      authDomain: "pedal-business.firebaseapp.com",
+      databaseURL: "https://pedal-business.firebaseio.com",
+      storageBucket: "pedal-business.appspot.com",
+    };
+    firebase.initializeApp(config);
+  </script>
+
+  <!-- Angular Google Places -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-FPbX1XaZpynBlOE9xNaQWKr5AYKqQWU&libraries=places"></script>
+  <script src="scripts/lib/autocomplete.js"></script>
+
+  <!-- application -->
+  <script src="scripts/app.js"></script>
+  <script src="scripts/configuration.js"></script>
+  <script src="scripts/userFactory.js"></script>
+  <script src="scripts/navController.js"></script>
+  <script src="scripts/registerController.js"></script>
+  <script src="scripts/signinController.js"></script>
+  <script src="scripts/profileController.js"></script>
+
+</body>
+</html>

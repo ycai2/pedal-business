@@ -1,0 +1,27 @@
+<div class="container">
+  <form novalidate class="row">
+    <div class="input-field col s12">
+      <input id="username" type="text" class="validate" ng-model="registerCtrl.user.username">
+      <label for="username">Username</label>
+    </div>
+    <div class="input-field col s12">
+      <input id="password" type="password" class="validate" ng-model="registerCtrl.user.password">
+      <label for="password">Password</label>
+    </div>
+    <div class="input-field col s12">
+      <input id="address" type="text" ng-model="registerCtrl.user.address" g-places-autocomplete>
+      <label for="address">Address</label>
+    </div>
+    <div class="input-field col s12">
+      <input id="cell" type="text" class="validate" ng-model="registerCtrl.user.cell">
+      <label for="cell">Phone</label>
+    </div>
+    <div class="center">
+      <button class="btn waves-effect waves-light" type="submit" name="register" ng-click="registerCtrl.register()">Register</button>
+      <a class="waves-effect waves-light btn-flat" ui-sref="signin">Back</a>
+    </div>
+  </form>
+  <p ng-if="registerCtrl.message">Message: <strong>{{ registerCtrl.message }}</strong></p>
+  <p ng-if="registerCtrl.error">Error: <strong>{{ registerCtrl.error }}</strong></p>
+  <pre class="test">{{ registerCtrl.user | json }}</pre>
+</div>
