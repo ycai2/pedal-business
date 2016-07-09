@@ -1,67 +1,137 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-<head>
-  <title>Pedal Interface</title>
-  <!--Import Google Icon Font-->
-  <link rel="stylesheet" href="http://fonts.googleapis.com/icon?family=Material+Icons">
-  <!-- Compiled and minified CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
-  <link rel="stylesheet" href="stylesheets/main.css">
-</head>
-<body>
-  <div class="app" ng-app="pedal">
-    <div class="navbar-fixed teal" ng-controller="NavController as navCtrl">
-      <nav>
-        <div class="nav-wrapper">
-          <a href="/" class="brand-logo">Pedal</a>
-          <ul class="right hide-on-med-and-down">
-            <li><a ng-if="navCtrl.firebaseUser" ui-sref="signin">Sign Out</a></li>
-          </ul>
+  <head>
+    <meta charset="utf-8">
+    <title>Pedal Business</title>
+    <!--Import Google Icon Font-->
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+    <link rel="stylesheet" href="stylesheets/main.css">
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+  </head>
+  <body>
+    <div class="container" >
+      <div id="login-card" class="card blue-grey darken-1 center hidden">
+        <div class="card-content white-text">
+          <span class="card-title">Pedal For Business</span>
+          <form class="container">
+            <div class="container">
+
+              <div class="input-field">
+                <input id="username" type="text" class="validate">
+                <label for="username">Username</label>
+              </div>
+
+              <div class="input-field">
+                <input id="password" type="password" class="validate">
+                <label for="password">Password</label>
+              </div>
+
+            </div>
+          </form>
         </div>
-      </nav>
+
+        <div class="card-action">
+          <a class="waves-effect waves-light btn" id="login-btn">Sign In</a>
+          <a class="waves-effect waves-light btn-flat" href="#">Contact Us</a>
+        </div>
+      </div>
     </div>
 
-    <div ui-view></div>
-  </div>
-  <!-- jQuery -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <div id="interface-card" class="hidden">
+      <div class="navbar-fixed">
+        <nav>
+          <div class="nav-wrapper teal">
+            <a href="#" class="brand-logo">Pedal Business</a>
+            <ul class="right hide-on-med-and-down">
+              <li><a class="red lighten-2 waves-effect waves-light btn" id="logout-btn">Sign Out</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
 
-  <!-- Materialize -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+      <div class="row">
+        <div class="col s12">
+          <ul class="tabs">
+            <li class="tab col s3"><a href="#events" class="active">Events</a></li>
+            <li class="tab col s3"><a href="#menu">Menu</a></li>
+            <li class="tab col s3"><a href="#profile">Profile</a></li>
+            <li class="tab col s3 disabled"><a href="#analytics">Analytics</a></li>
+          </ul>
+        </div>
+        <div id="events" class="col s12">
+          <br>
+          <div class="">
+            <div class="card">
+              <div class="card-content">
+                
 
-  <!-- AngularJS -->
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-animate.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-aria.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-messages.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.0-alpha0/angular-ui-router.js"></script>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-  <!-- AngularFire -->
-  <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase.js"></script>
-  <script src="https://cdn.firebase.com/libs/angularfire/2.0.1/angularfire.min.js"></script>
-  <script>
-    // Initialize Firebase
-    var config = {
-      apiKey: "AIzaSyA-FPbX1XaZpynBlOE9xNaQWKr5AYKqQWU",
-      authDomain: "pedal-business.firebaseapp.com",
-      databaseURL: "https://pedal-business.firebaseio.com",
-      storageBucket: "pedal-business.appspot.com",
-    };
-    firebase.initializeApp(config);
-  </script>
+        <div id="menu" class="col s12">Coming Soon!</div>
 
-  <!-- Angular Google Places -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-FPbX1XaZpynBlOE9xNaQWKr5AYKqQWU&libraries=places"></script>
-  <script src="scripts/lib/autocomplete.js"></script>
+        <div id="profile" class="col s12">
+          <div class="input-field">
+            <input id="business_name" type="text" class="validate">
+            <label for="business_name">Business Name</label>
+          </div>
+          <div class="input-field">
+            <input id="address" type="text" class="validate">
+            <label for="address">Address</label>
+          </div>
+          <div class="input-field">
+            <input id="email" type="text" class="validate">
+            <label for="email">Email</label>
+          </div>
+          <div class="input-field">
+            <input id="phone" type="text" class="validate">
+            <label for="phone">Phone</label>
+          </div>
+          <p>
+            <input type="checkbox" class="filled-in" id="delivery" checked="checked" />
+            <label for="delivery">Delivery</label>
+          </p>
+          <div class="right-align">
+            <a class="waves-effect waves-light btn update-profile-btn">Update</a>
+          </div>
+        </div>
 
-  <!-- application -->
-  <script src="scripts/app.js"></script>
-  <script src="scripts/configuration.js"></script>
-  <script src="scripts/userFactory.js"></script>
-  <script src="scripts/navController.js"></script>
-  <script src="scripts/registerController.js"></script>
-  <script src="scripts/signinController.js"></script>
-  <script src="scripts/profileController.js"></script>
+        <div id="analytics" class="col s12">Coming Soon!</div>
+      </div>
 
-</body>
+    </div>
+      
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyCRunHn6apA3a4ex6Rf5qa8hTxtIExVZm8",
+        authDomain: "angularfire-test-54090.firebaseapp.com",
+        databaseURL: "https://angularfire-test-54090.firebaseio.com",
+        storageBucket: "angularfire-test-54090.appspot.com",
+      };
+      firebase.initializeApp(config);
+    </script>
+
+    <script>
+      $(document).ready(function(){
+        // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+        $('.modal-trigger').leanModal();
+        $('select').material_select();
+        $('ul.tabs').tabs();
+      });
+    </script>
+    <script src="scripts/user.js"></script>
+    <script src="scripts/interface.js"></script>
+  </body>
 </html>
