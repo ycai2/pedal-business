@@ -68,18 +68,11 @@
               <div class="day-title">
                 <h5>Sunday</h5>
               </div>
-              <div>
+              <div class="event_list" data-day-id="0">
                 <ul>
-                <li>
-                    <div class="card">
-                      <h6 class="card-title center-align">Title</h6>
-                      <div class="card-content center-align">
-                        <p>Content</p>
-                      </div>
-                    </div>
-                  </li>
+                  
                 </ul>
-                <a class="add_sunday_event waves-effect waves-light btn add_event">Add</a>
+                <a class="waves-effect waves-light btn add_event" data-day-id="0">Add</a>
                 <br>
               </div>
             </div>
@@ -88,10 +81,10 @@
               <div class="day-title">
                 <h5>Monday</h5>
               </div>
-              <div>
+              <div class="event_list" data-day-id="1">
                 <ul>
                 </ul>
-                <a class="waves-effect waves-light btn add_event">Add</a>
+                <a class="waves-effect waves-light btn add_event" data-day-id="1">Add</a>
                 <br>
               </div>
             </div>
@@ -100,10 +93,10 @@
               <div class="day-title">
                 <h5>Tuesday</h5>
               </div>
-              <div>
+              <div class="event_list" data-day-id="2">
                 <ul>
                 </ul>
-                <a class="waves-effect waves-light btn add_event">Add</a>
+                <a class="waves-effect waves-light btn add_event"  data-day-id="2">Add</a>
                 <br>
               </div>
             </div>
@@ -112,10 +105,10 @@
               <div class="day-title">
                 <h5>Wednesday</h5>
               </div>
-              <div>
+              <div class="event_list" data-day-id="3">
                 <ul>
                 </ul>
-                <a class="waves-effect waves-light btn add_event">Add</a>
+                <a class="waves-effect waves-light btn add_event"  data-day-id="3">Add</a>
                 <br>
               </div>
             </div>
@@ -124,10 +117,10 @@
               <div class="day-title">
                 <h5>Thursday</h5>
               </div>
-              <div>
+              <div class="event_list" data-day-id="4">
                 <ul>
                 </ul>
-                <a class="waves-effect waves-light btn add_event">Add</a>
+                <a class="waves-effect waves-light btn add_event" data-day-id="4">Add</a>
                 <br>
               </div>
             </div>
@@ -136,10 +129,10 @@
               <div class="day-title">
                 <h5>Friday</h5>
               </div>
-              <div>
+              <div class="event_list" data-day-id="5">
                 <ul>
                 </ul>
-                <a class="waves-effect waves-light btn add_event">Add</a>
+                <a class="waves-effect waves-light btn add_event" data-day-id="5">Add</a>
                 <br>
               </div>
             </div>
@@ -148,18 +141,18 @@
               <div class="day-title">
                 <h5>Saturday</h5>
               </div>
-              <div>
+              <div class="event_list" data-day-id="6">
                 <ul>
-                  <li>
+                  <!-- <li>
                     <div class="card">
                       <h6 class="card-title center-align">Title</h6>
                       <div class="card-content center-align">
                         <p>Content</p>
                       </div>
                     </div>
-                  </li>
+                  </li> -->
                 </ul>
-                <a class="waves-effect waves-light btn add_event">Add</a>
+                <a class="waves-effect waves-light btn add_event" data-day-id="6">Add</a>
                 <br>
               </div>
             </div>  
@@ -200,22 +193,22 @@
         <div id="analytics" class="col s12">Coming Soon!</div>
       </div>
       <!-- Event Modal -->
-          <div id="event_modal" class="modal">
-            <div class="modal-content">
-              <div class="input-field">
-                <input id="event_title" type="text">
-                <label for="event_title">Title</label>
-              </div>
-              <div class="input-field">
-                <textarea id="event_content" class="materialize-textarea"></textarea>
-                <label for="event_content">Content</label>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <a href="#" class=" modal-close waves-effect waves-orange btn-flat">Cancel</a>
-              <a href="#!" class=" modal-action modal-close waves-effect waves-green btn">Agree</a>
-            </div>
+      <div id="event_modal" class="modal">
+        <div class="modal-content">
+          <div class="input-field">
+            <input id="event_title" type="text">
+            <label for="event_title">Title</label>
           </div>
+          <div class="input-field">
+            <textarea id="event_content" class="materialize-textarea"></textarea>
+            <label for="event_content">Content</label>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <a href="#" class=" modal-close waves-effect waves-orange btn-flat">Cancel</a>
+          <a href="#!" class=" modal-action modal-close waves-effect waves-green btn">Save</a>
+        </div>
+      </div>
     </div>
       
 

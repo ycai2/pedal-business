@@ -7,8 +7,7 @@ $(function(){
     if (user) {
       console.log('Interface user:', user.uid);
       var data = firebase.database().ref('users/' + user.uid);
-
-
+      var dayId = 0;
 
       data.once('value')
         .then(function(snapshot) {
@@ -25,7 +24,7 @@ $(function(){
           Materialize.updateTextFields();  //Update input boxes with Materialize
         })
         .catch(function(error) {
-          console.log(error);
+          console.log(error.message);
         });
 
       $('.update-profile-btn').on('click tap', function() {
@@ -48,41 +47,59 @@ $(function(){
 
       $('.add_event').on('click tap', function(e) {
         $('#event_modal').openModal();
-        console.log(e.target);
+        //console.log($(e.target).data("dayId"));
+        dayId = $(e.target).data("dayId");
+        
+
+        
       });
-      // $('.add_event').each(function(index){
-      //   $(this).on('click tap', function(){
-      //     //console.log(index + " add clicked!");
-      //     $('#event_modal').openModal();
-      //   });
-      //   $('.modal-action').on('click tap', function(){
-      //     console.log(index + " add clicked!");
-      //   });
 
-        // $('.modal-action').on('click tap', function(){
+      //Add event to Firebase
+      $('.modal-action').on('click tap', function(){
+        if (dayId) {
+          data.child('events/' + dayId).push({
+            title: $('#event_title').val(),
+            content: $('#event_content').val()
+          }).then(function() {
+            Materialize.toast('Event added!', 3000);
+            $('#event_title').val('');
+            $('#event_content').val(''); 
+          }).catch(function() {
+            console.log('There was an error.');
+          });
+        } else {
+          console.log('No dayId specified.');
+        }
+      });
 
-        //   data.child('events/'+index).push({
-        //     title: $('#event_title').val(),
-        //     content: $('#event_content').val()
-        //   }).then(function() {
+      data.child('events/').on('value', function(snapshot) {
+        snapshot.val().forEach(function(event, dayId) {
+          //console.log(event);
+          updateEvent(dayId, event);
+        });
+      });
 
-        //     $('#event_title').val('');
-        //     $('#event_content').val(''); 
-        //   }).catch(function() {
-        //     console.log('There was an error.');
-        //   });
+      function updateEvent(dayId, event) {
+        //Find specific day list
+        var day = $('.event_list[data-day-id=' + dayId + ']')[0],
+            event_list = $(day).find('ul')[0],
+            formatted_card = '',
+            new_list = document.createElement('ul');
 
-        //   // var event = {
-        //   //   day: index,
-        //   //   title: $('#event_title').val(),
-        //   //   content: $('#event_content').val()
-        //   // };
-        //   // console.log(event);
-          
-        //   // data.push()
-        // });
-      //});
-      
+
+        Object.keys(event).forEach(function (key) {
+          var val = event[key];
+          formatted_card = document.createElement('li');
+          formatted_card.innerHTML = '<div class="card">' + 
+                      '<h6 class="card-title center-align">' + val.title + '</h6>' + 
+                      '<div class="card-content center-align">' + 
+                        '<p>' + val.content + '</p>' + 
+                      '</div>' +
+                      '</div>';
+          new_list.appendChild(formatted_card);
+        });
+        day.replaceChild(new_list, event_list);
+      }
     } 
   });
 });
