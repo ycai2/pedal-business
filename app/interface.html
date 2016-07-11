@@ -64,9 +64,9 @@
         </div>
         <div id="events" class="col s12">
           <div class="management-scrollbar">
-            <div class="management-outer grey lighten-3">
-              <div class="test">
-                <h5>Monday</h5>
+            <div class="management-outer grey lighten-3 sunday">
+              <div class="day-title">
+                <h5>Sunday</h5>
               </div>
               <div>
                 <ul>
@@ -79,74 +79,74 @@
                     </div>
                   </li>
                 </ul>
-                <a class="waves-effect waves-light btn">Add</a>
+                <a class="add_sunday_event waves-effect waves-light btn add_event">Add</a>
                 <br>
               </div>
             </div>
 
-            <div class="management-outer grey lighten-3">
-              <div class="test">
+            <div class="management-outer grey lighten-3 monday">
+              <div class="day-title">
+                <h5>Monday</h5>
+              </div>
+              <div>
+                <ul>
+                </ul>
+                <a class="waves-effect waves-light btn add_event">Add</a>
+                <br>
+              </div>
+            </div>
+
+            <div class="management-outer grey lighten-3 tuesday">
+              <div class="day-title">
                 <h5>Tuesday</h5>
               </div>
               <div>
                 <ul>
                 </ul>
-                <a class="waves-effect waves-light btn">Add</a>
+                <a class="waves-effect waves-light btn add_event">Add</a>
                 <br>
               </div>
             </div>
 
-            <div class="management-outer grey lighten-3">
-              <div class="test">
+            <div class="management-outer grey lighten-3 wednesday">
+              <div class="day-title">
                 <h5>Wednesday</h5>
               </div>
               <div>
                 <ul>
                 </ul>
-                <a class="waves-effect waves-light btn">Add</a>
+                <a class="waves-effect waves-light btn add_event">Add</a>
                 <br>
               </div>
             </div>
 
-            <div class="management-outer grey lighten-3">
-              <div class="test">
+            <div class="management-outer grey lighten-3 thursday">
+              <div class="day-title">
                 <h5>Thursday</h5>
               </div>
               <div>
                 <ul>
                 </ul>
-                <a class="waves-effect waves-light btn">Add</a>
+                <a class="waves-effect waves-light btn add_event">Add</a>
                 <br>
               </div>
             </div>
 
-            <div class="management-outer grey lighten-3">
-              <div class="test">
+            <div class="management-outer grey lighten-3 friday">
+              <div class="day-title">
                 <h5>Friday</h5>
               </div>
               <div>
                 <ul>
                 </ul>
-                <a class="waves-effect waves-light btn">Add</a>
+                <a class="waves-effect waves-light btn add_event">Add</a>
                 <br>
               </div>
             </div>
 
-            <div class="management-outer grey lighten-3">
-              <div class="test">
+            <div class="management-outer grey lighten-3 saturday">
+              <div class="day-title">
                 <h5>Saturday</h5>
-              </div>
-              <div>
-                <ul>
-                </ul>
-                <a class="waves-effect waves-light btn">Add</a>
-                <br>
-              </div>
-            </div>
-
-            <div class="management-outer grey lighten-3">
-              <div class="test">
-                <h5>Sunday</h5>
               </div>
               <div>
                 <ul>
@@ -159,37 +159,15 @@
                     </div>
                   </li>
                 </ul>
-                <a class="waves-effect waves-light btn">Add</a>
+                <a class="waves-effect waves-light btn add_event">Add</a>
                 <br>
               </div>
             </div>  
           </div>
-
-
-          <!-- Modal Structure -->
-          <div id="demoModal" class="modal" ng-controller="ManagementController as management">
-              <div class="modal-content">
-                  <div input-field>
-                    <input type="text" length="20" ng-model="management.eventTitle">
-                    <label>Event</label>
-                  </div>
-
-                  <div input-field>
-                    <input type="text" length="150" ng-model="management.eventDetail">
-                    <label>Detail</label>
-                  </div>
-
-              </div>
-
-              <div class="modal-footer">
-                  <a ng-click="management.clickSave()" href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Save</a>
-              </div>
-          </div>
+          
         </div>
 
-
-
-        </div>
+        
 
         <div id="menu" class="col s12">Coming Soon!</div>
 
@@ -221,7 +199,23 @@
 
         <div id="analytics" class="col s12">Coming Soon!</div>
       </div>
-
+      <!-- Event Modal -->
+          <div id="event_modal" class="modal">
+            <div class="modal-content">
+              <div class="input-field">
+                <input id="event_title" type="text">
+                <label for="event_title">Title</label>
+              </div>
+              <div class="input-field">
+                <textarea id="event_content" class="materialize-textarea"></textarea>
+                <label for="event_content">Content</label>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <a href="#" class=" modal-close waves-effect waves-orange btn-flat">Cancel</a>
+              <a href="#!" class=" modal-action modal-close waves-effect waves-green btn">Agree</a>
+            </div>
+          </div>
     </div>
       
 

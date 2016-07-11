@@ -1,19 +1,25 @@
 $(function(){
-  var data = firebase.database();
+  
+  //var dayofweek = ['sunday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
 
   firebase.auth().onAuthStateChanged(function(user) {
     //console.log(firebase.auth().currentUser);
     if (user) {
       console.log('Interface user:', user.uid);
-      data.ref('users/' + user.uid).once('value')
-        .then(function(snapshot) {
-          var info = snapshot.val().profile_info;
+      var data = firebase.database().ref('users/' + user.uid);
 
-          //Set fields
-          $('#business_name').val(info.business_name);
-          $('#address').val(info.address);
-          $('#email').val(info.email);
-          $('#phone').val(info.phone);
+
+
+      data.once('value')
+        .then(function(snapshot) {
+          var profile_info = snapshot.val().profile_info;
+          
+
+          //Set profile fields
+          $('#business_name').val(profile_info.business_name);
+          $('#address').val(profile_info.address);
+          $('#email').val(profile_info.email);
+          $('#phone').val(profile_info.phone);
           $('#delivery').prop('checked', true);
 
           Materialize.updateTextFields();  //Update input boxes with Materialize
@@ -23,14 +29,14 @@ $(function(){
         });
 
       $('.update-profile-btn').on('click tap', function() {
-        data.ref('users/' + user.uid).set({
-          profile_info: {
-            business_name: $('#business_name').val(),
-            address: $('#address').val(),
-            email: $('#email').val(),
-            phone: $('#phone').val(),
-            delivery: $('#delivery').is(':checked'),
-          }
+        data.child('profile_info').set({
+          
+          business_name: $('#business_name').val(),
+          address: $('#address').val(),
+          email: $('#email').val(),
+          phone: $('#phone').val(),
+          delivery: $('#delivery').is(':checked'),
+          
         })
         .then(function(){
           Materialize.toast('Profile record updated!', 3000);
@@ -39,6 +45,44 @@ $(function(){
           console.log(error.message);
         })
       });
+
+      $('.add_event').on('click tap', function(e) {
+        $('#event_modal').openModal();
+        console.log(e.target);
+      });
+      // $('.add_event').each(function(index){
+      //   $(this).on('click tap', function(){
+      //     //console.log(index + " add clicked!");
+      //     $('#event_modal').openModal();
+      //   });
+      //   $('.modal-action').on('click tap', function(){
+      //     console.log(index + " add clicked!");
+      //   });
+
+        // $('.modal-action').on('click tap', function(){
+
+        //   data.child('events/'+index).push({
+        //     title: $('#event_title').val(),
+        //     content: $('#event_content').val()
+        //   }).then(function() {
+
+        //     $('#event_title').val('');
+        //     $('#event_content').val(''); 
+        //   }).catch(function() {
+        //     console.log('There was an error.');
+        //   });
+
+        //   // var event = {
+        //   //   day: index,
+        //   //   title: $('#event_title').val(),
+        //   //   content: $('#event_content').val()
+        //   // };
+        //   // console.log(event);
+          
+        //   // data.push()
+        // });
+      //});
+      
     } 
   });
 });
