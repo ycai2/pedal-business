@@ -5,11 +5,10 @@
   "hosting": {
     "public": "app"
   },
-  "redirects": [ 
+  "rewrites": [ 
     {
       "source" : "/interface",
-      "destination" : "/interface.html",
-      "type" : 301
+      "destination" : "/interface.html"
     }
   ]
 }

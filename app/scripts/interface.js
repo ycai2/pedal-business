@@ -73,9 +73,9 @@ $(function(){
       });
 
       data.child('events/').on('value', function(snapshot) {
-        snapshot.val().forEach(function(event, dayId) {
-          //console.log(event);
-          updateEvent(dayId, event);
+        //console.log(snapshot.val());
+        Object.keys(snapshot.val()).forEach(function(dayId) {
+          updateEvent(dayId, snapshot.val()[dayId]);
         });
       });
 
