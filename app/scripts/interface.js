@@ -7,7 +7,7 @@ $(function(){
     if (user) {
       console.log('Interface user:', user.uid);
       var data = firebase.database().ref('users/' + user.uid);
-      var dayId = 0;
+      var dayId, eventId = 0;
 
       data.once('value')
         .then(function(snapshot) {
@@ -49,10 +49,8 @@ $(function(){
         $('#event_modal').openModal();
         //console.log($(e.target).data("dayId"));
         dayId = $(e.target).data("dayId");
-        
-
-        
       });
+
 
       //Add event to Firebase
       $('.modal-action').on('click tap', function(){
@@ -74,30 +72,55 @@ $(function(){
 
       data.child('events/').on('value', function(snapshot) {
         //console.log(snapshot.val());
-        Object.keys(snapshot.val()).forEach(function(dayId) {
-          updateEvent(dayId, snapshot.val()[dayId]);
-        });
+
+        // if (snapshot.val()){
+        //   Object.keys(snapshot.val()).forEach(function(day_key) {
+        //     updateEvent(day_key, snapshot.val()[day_key]);
+        //   });
+        // } 
+      for (var i = 0; i < 7; ++i) {
+        if (snapshot.val()){
+          updateEvent(i, snapshot.val()[i]);
+        }
+        else {
+          updateEvent(i, null);
+        }
+
+      }
+        
       });
 
-      function updateEvent(dayId, event) {
+      function updateEvent(day_key, event) {
         //Find specific day list
-        var day = $('.event_list[data-day-id=' + dayId + ']')[0],
+        var day = $('.event_list[data-day-id=' + day_key + ']')[0],
             event_list = $(day).find('ul')[0],
             formatted_card = '',
             new_list = document.createElement('ul');
 
+        if (event){
+          Object.keys(event).forEach(function (key) {
+            var val = event[key];
+            formatted_card = document.createElement('li');
+            formatted_card.innerHTML = '<div class="card">' + 
+                        '<h6 class="card-title center-align">' + val.title + '</h6>' + 
+                        '<div class="card-content center-align">' + 
+                          '<p>' + val.content + '</p>' + 
+                          '<a class="waves-effect waves-light btn delete_event" data-event-id='+ key +'>Delete</a>' +
+                        '</div>' +
+                        '</div>';
 
-        Object.keys(event).forEach(function (key) {
-          var val = event[key];
-          formatted_card = document.createElement('li');
-          formatted_card.innerHTML = '<div class="card">' + 
-                      '<h6 class="card-title center-align">' + val.title + '</h6>' + 
-                      '<div class="card-content center-align">' + 
-                        '<p>' + val.content + '</p>' + 
-                      '</div>' +
-                      '</div>';
-          new_list.appendChild(formatted_card);
-        });
+            new_list.appendChild(formatted_card);
+
+            $(formatted_card).on('click tap', function(e){
+              eventId = $(e.target).data("eventId");
+
+              var deleteRef = firebase.database().ref('users/' + user.uid + '/events/' + day_key + '/' + eventId);
+              deleteRef.remove();
+              console.log(eventId);
+            });
+            
+          });
+        }
         day.replaceChild(new_list, event_list);
       }
     } 
