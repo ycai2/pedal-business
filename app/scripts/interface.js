@@ -54,40 +54,49 @@ $(function(){
 
       //Add event to Firebase
       $('.modal-action').on('click tap', function(){
-        if (dayId) {
+        console.log($('#event-type').val());
+        if (dayId && ($('#event-type').val() == 'event')) {
           data.child('events/' + dayId).push({
             title: $('#event_title').val(),
-            content: $('#event_content').val()
+            content: $('#event_content').val(),
+            type: $('#event-type').val()
           }).then(function() {
             Materialize.toast('Event added!', 3000);
             $('#event_title').val('');
             $('#event_content').val(''); 
+            $('#event-type').val(''); 
           }).catch(function() {
             console.log('There was an error.');
           });
-        } else {
+        }
+        else if (dayId && ($('#event-type').val() == 'deal')) {
+          data.child('deals/' + dayId).push({
+            title: $('#event_title').val(),
+            content: $('#event_content').val(),
+            type: $('#event-type').val()
+          }).then(function() {
+            Materialize.toast('Deal added!', 3000);
+            $('#event_title').val('');
+            $('#event_content').val(''); 
+            $('#event-type').val(''); 
+          }).catch(function() {
+            console.log('There was an error.');
+          });
+        }
+        else {
           console.log('No dayId specified.');
         }
       });
 
       data.child('events/').on('value', function(snapshot) {
-        //console.log(snapshot.val());
-
-        // if (snapshot.val()){
-        //   Object.keys(snapshot.val()).forEach(function(day_key) {
-        //     updateEvent(day_key, snapshot.val()[day_key]);
-        //   });
-        // } 
-      for (var i = 0; i < 7; ++i) {
-        if (snapshot.val()){
-          updateEvent(i, snapshot.val()[i]);
-        }
-        else {
-          updateEvent(i, null);
-        }
-
-      }
-        
+        for (var i = 0; i < 7; ++i) {
+          if (snapshot.val()){
+            updateEvent(i, snapshot.val()[i]);
+          }
+          else {
+            updateEvent(i, null);
+          }
+        }      
       });
 
       function updateEvent(day_key, event) {
