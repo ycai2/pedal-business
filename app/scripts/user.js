@@ -1,5 +1,6 @@
 var login = $('#login-card');
 var interface = $('#interface-card');
+var reg_username = /^[a-z]+[a-z0-9-_]*[a-z0-9]+$/;
 $(function(){
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
@@ -29,13 +30,21 @@ $(function(){
         var pw = $('#password').val();
         $('#password').val("");          //clear password for security reason at front-end
 
-        firebase.auth().signInWithEmailAndPassword(username + "@pedal.com", pw).catch(function(error) {
-          // Handle Errors here.
-          var errorCode = error.code;
-          var errorMessage = error.message;
-          Materialize.toast(errorMessage, 3000);
-          // ...
-        });
+        
+        if (reg_username.test(username)){
+          firebase.auth().signInWithEmailAndPassword(username + "@pedal.com", pw).catch(function(error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            console.log(error);
+            Materialize.toast(errorMessage, 3000);
+            // ...
+          });
+        }
+        else{
+          console.log("Regex test failed. ")
+          Materialize.toast("Please enter a correct username", 3000);
+        }
       });
     }
   });
