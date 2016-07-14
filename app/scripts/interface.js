@@ -9,16 +9,7 @@ $(function(){
       var data = firebase.database().ref('users/' + user.uid);
       var dayId, eventId = 0;
       var regEmail = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
-
-      // business profile validation
-      var isInfoValid = function(name, address, email, phone){
-        if (!name){
-          Materialize.toast('Please enter a business name!', 3000);
-          return false;
-        }
-
-
-      }
+      var regPhonoe = /^\d{3}(-\d{3}-|\d{3})\d{4}$/;
 
       data.child('profile_info').once('value')
         .then(function(snapshot) {
@@ -45,7 +36,7 @@ $(function(){
           var businessPhone = $('#phone').val();
 
 
-        if (isInfoValid(businessName, businessAddress, businessEmail, businessPhone)){
+        if (isInfoValid(businessName, businessEmail, businessPhone)){
           data.child('profile_info').set({
             business_name: businessName,
             address: businessAddress,
@@ -97,9 +88,6 @@ $(function(){
         }
       });
 
-
-
-
       data.child('specials/').on('value', function(snapshot) {
         var deals = snapshot.child('deal').val();
         var events = snapshot.child('event').val();
@@ -148,6 +136,23 @@ $(function(){
           });
         }
         return list;
+      }
+
+      // business profile validation
+      function isInfoValid(name, email, phone){
+        if (!name){
+          Materialize.toast('Please enter a business name!', 3000);
+          return false;
+        }
+        if (!regEmail.test(email)){
+          Materialize.toast('Please enter a valid email!', 3000);
+          return false;
+        }
+        if (!regPhonoe.test(phone)){
+          Materialize.toast('Please enter a valid phone number!', 3000);
+          return false;
+        }
+        return true;
       }
 
       function formatCard(card_id, card) {
