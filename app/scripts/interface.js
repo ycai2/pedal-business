@@ -9,38 +9,53 @@ $(function(){
       var data = firebase.database().ref('users/' + user.uid);
       var dayId, eventId = 0;
 
+      // business profile validation
+      var businessInfoValidation = function(name, address, email, phone){
+        if (!name){
+          Materialize.toast('Please enter a business name!', 3000);
+          return false;
+        }
+      }
+
       data.child('profile_info').once('value')
         .then(function(snapshot) {
           var profile_info = snapshot.val();
+            //Set profile fields
+            $('#business_name').val(profile_info.business_name);
+            $('#address').val(profile_info.address);
+            $('#email').val(profile_info.email);
+            $('#phone').val(profile_info.phone);
+            $('#delivery').prop('checked', true);
+
+            Materialize.updateTextFields();  //Update input boxes with Materialize
           
-
-          //Set profile fields
-          $('#business_name').val(profile_info.business_name);
-          $('#address').val(profile_info.address);
-          $('#email').val(profile_info.email);
-          $('#phone').val(profile_info.phone);
-          $('#delivery').prop('checked', true);
-
-          Materialize.updateTextFields();  //Update input boxes with Materialize
         })
         .catch(function(error) {
           console.log(error.message);
         });
 
       $('.update-profile-btn').on('click tap', function() {
-        data.child('profile_info').set({
-          business_name: $('#business_name').val(),
-          address: $('#address').val(),
-          email: $('#email').val(),
-          phone: $('#phone').val(),
-          delivery: $('#delivery').is(':checked'),
-        })
-        .then(function(){
-          Materialize.toast('Profile record updated!', 3000);
-        })
-        .catch(function(error){
-          console.log(error.message);
-        })
+          var businessName = $('#business_name').val();
+          var businessAddress = $('#address').val();
+          var businessEmail = $('#email').val();
+          var businessPhone = $('#phone').val();
+
+
+        if (businessInfoValidation(businessName, businessAddress, businessEmail, businessPhone)){
+          data.child('profile_info').set({
+            business_name: businessName,
+            address: businessAddress,
+            email: businessEmail,
+            phone: businessPhone,
+            delivery: $('#delivery').is(':checked'),
+          })
+          .then(function(){
+            Materialize.toast('Profile record updated!', 3000);
+          })
+          .catch(function(error){
+            console.log(error.message);
+          })
+        }
       });
 
       $('.add_event').on('click tap', function(e) {
@@ -82,9 +97,9 @@ $(function(){
 
 
 
+
       data.child('specials/').on('value', function(snapshot) {
         
-
         var deals = snapshot.child('deal').val();
         var events = snapshot.child('event').val();
         // console.log(deals);
@@ -138,9 +153,8 @@ $(function(){
         }
         return list;
       }
-      
-
-
+    
+      // insert a card
       function formatCard(card_id, card) {
         var formatted_card = document.createElement('li');
         formatted_card.innerHTML = '<div class="card">' + 
