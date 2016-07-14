@@ -8,24 +8,28 @@ $(function(){
       console.log('Interface user:', user.uid);
       var data = firebase.database().ref('users/' + user.uid);
       var dayId, eventId = 0;
+      var regEmail = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
 
       // business profile validation
-      var businessInfoValidation = function(name, address, email, phone){
+      var isInfoValid = function(name, address, email, phone){
         if (!name){
           Materialize.toast('Please enter a business name!', 3000);
           return false;
         }
+
+
       }
 
       data.child('profile_info').once('value')
         .then(function(snapshot) {
           var profile_info = snapshot.val();
+
             //Set profile fields
             $('#business_name').val(profile_info.business_name);
             $('#address').val(profile_info.address);
             $('#email').val(profile_info.email);
             $('#phone').val(profile_info.phone);
-            $('#delivery').prop('checked', true);
+            $('#delivery').prop('checked', profile_info.delivery);
 
             Materialize.updateTextFields();  //Update input boxes with Materialize
           
@@ -41,7 +45,7 @@ $(function(){
           var businessPhone = $('#phone').val();
 
 
-        if (businessInfoValidation(businessName, businessAddress, businessEmail, businessPhone)){
+        if (isInfoValid(businessName, businessAddress, businessEmail, businessPhone)){
           data.child('profile_info').set({
             business_name: businessName,
             address: businessAddress,
@@ -78,13 +82,11 @@ $(function(){
             data.child('specials/' + type +'/' + dayId).push({
               title: $('#event_title').val(),
               content: $('#event_content').val()
-
             }).then(function() {
               Materialize.toast('Event added!', 3000);
-              $('#event_title').val('');
-              $('#event_content').val(''); 
               $('#event_modal').closeModal();
-
+              $('#event_title').val('');
+              $('#event_content').val('');   
             }).catch(function() {
               console.log('There was an error.');
             });
@@ -99,14 +101,8 @@ $(function(){
 
 
       data.child('specials/').on('value', function(snapshot) {
-        
         var deals = snapshot.child('deal').val();
         var events = snapshot.child('event').val();
-        // console.log(deals);
-        // console.log(events);
-        // if (snapshot.val()) {
-        //   updateSchedule(snapshot.val());
-        // }
 
         for (var i = 0; i < 7; i++) {
           //every day
@@ -153,19 +149,16 @@ $(function(){
         }
         return list;
       }
-    
-      // insert a card
+
       function formatCard(card_id, card) {
         var formatted_card = document.createElement('li');
-        formatted_card.innerHTML = '<div class="card">' + 
+        formatted_card.innerHTML = '<div class="card hoverable">' + 
                         '<h6 class="card-title center-align">' + card.title + '</h6>' + 
                         '<div class="card-content">' + 
-                          '<p>' + card.content + '</p>' + 
-                          //'<a class="waves-effect waves-light btn delete_event" data-event-id='+ card_id +'>Delete</a>' +
-                          
+                          '<p class="truncate">' + card.content + '</p>' + 
                         '</div>' +
                         '<div class="right-align">' + 
-                        '<i class="material-icons delete_event" data-event-id='+ card_id +'>delete</i>' + 
+                          '<i class="material-icons delete_event" data-event-id='+ card_id +'>delete</i>' + 
                         '</div>';
         return formatted_card;
       }
