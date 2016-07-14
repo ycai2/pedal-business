@@ -58,35 +58,40 @@ $(function(){
         //console.log($(e.target).data("dayId"));
         dayId = $(e.target).data("dayId");
       });
+      $('.add_deal').on('click tap', function(e) {
+        $('#deal_modal').openModal();
+        //console.log($(e.target).data("dayId"));
+        dayId = $(e.target).data("dayId");
+      });
+
+      
 
 
       //Add event to Firebase
-      $('.modal-action').on('click tap', function(){
+      $('#event_modal').find('.modal-action').on('click tap', function(){
         //console.log($('#event-type').val());
-        var type = $("input[name=event_type]:checked").val();
+        //var type = $("input[name=event_type]:checked").val();
         //console.log(type);
-
-        if (!type) {
-          Materialize.toast('Please choose a type. ', 3000);
-        } else {
-          if (0 <= dayId && dayId < 7) {
-            data.child('specials/' + type +'/' + dayId).push({
-              title: $('#event_title').val(),
-              content: $('#event_content').val()
-            }).then(function() {
-              Materialize.toast('Event added!', 3000);
-              $('#event_modal').closeModal();
-              $('#event_title').val('');
-              $('#event_content').val('');   
-            }).catch(function() {
-              console.log('There was an error.');
-            });
-          }
-          else {
-            console.log('No dayId specified.');
-          }
+        if (0 <= dayId && dayId < 7) {
+          data.child('specials/event/' + dayId).push({
+            title: $('#event_title').val(),
+            content: $('#event_content').val()
+          }).then(function() {
+            Materialize.toast('Event added!', 3000);
+            $('#event_modal').closeModal();
+            $('#event_title').val('');
+            $('#event_content').val('');   
+          }).catch(function() {
+            console.log('There was an error.');
+          });
+        }
+        else {
+          console.log('No dayId specified.');
         }
       });
+
+
+
 
       data.child('specials/').on('value', function(snapshot) {
         var deals = snapshot.child('deal').val();
@@ -155,6 +160,7 @@ $(function(){
         return true;
       }
 
+      //generate a card with data
       function formatCard(card_id, card) {
         var formatted_card = document.createElement('li');
         formatted_card.innerHTML = '<div class="card hoverable">' + 

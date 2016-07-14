@@ -8,9 +8,10 @@
     <!--Import materialize.css-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
     <link rel="stylesheet" href="stylesheets/main.css">
+    <link rel="stylesheet" href="stylesheets/libraries/nouislider.css">
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    
   </head>
   <body>
     <div class="container" >
@@ -71,7 +72,11 @@
               <div class="event_list" data-day-id="0">
                 <ul>
                 </ul>
-                <a class="waves-effect waves-light btn add_event" data-day-id="0">Add</a>
+                  <a class='dropdown-button btn' data-hover="true" data-beloworigin="true" href='#' data-activates='add_special'>Add</a>
+                  <ul id='add_special' class='dropdown-content'>
+                    <li><a href="#!" class="add_event" data-day-id="0">Event</a></li>
+                    <li><a href="#!" class="add_deal" data-day-id="0">Deal</a></li>
+                  </ul>
                 <br>
               </div>
             </div>
@@ -191,6 +196,8 @@
 
         <div id="analytics" class="col s12">Coming Soon!</div>
       </div>
+
+
       <!-- Event Modal -->
       <div id="event_modal" class="modal">
         <div class="modal-content">
@@ -200,20 +207,37 @@
           </div>
           <div class="input-field">
             <textarea id="event_content" class="materialize-textarea"></textarea>
-            <label for="event_content">Content</label>
+            <label for="event_content">Event Content</label>
           </div>
-          <span>
-            <input name="event_type" type="radio" id="deal_radio" value="deal" class="orange"/>
-            <label for="deal_radio" class="orange-text">Deal</label>
-          </span>
-          <span>
-            <input name="event_type" type="radio" id="event_radio" value="event"/>
-            <label for="event_radio" class="purple-text">Event</label>
-          </span>
         </div>
         <div class="modal-footer">
-          <a href="#" class=" modal-close waves-effect waves-orange btn-flat">Cancel</a>
-          <a href="#!" class=" modal-action waves-effect waves-green btn">Save</a>
+          <a href="#" class="modal-close waves-effect waves-orange btn-flat">Cancel</a>
+          <a href="#!" class="modal-action waves-effect waves-green btn">Save</a>
+        </div>
+      </div>
+
+      <!-- Deal Modal -->
+      <div id="deal_modal" class="modal">
+        <div class="modal-content">
+          <div class="row">
+            <div class="input-field col s6">
+              <input id="item_name" type="text">
+              <label for="item_name">Item</label>
+            </div>
+            <div class="input-field col s6">
+              <input id="item_price" type="text">
+              <label for="item_price">Price</label>
+            </div>
+          </div>
+          <div class="time_range"></div>
+          <br>
+          <div class="center-align">
+            <span class="deal_start"></span> - <span class="deal_end"></span>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <a href="#" class="modal-close waves-effect waves-orange btn-flat">Cancel</a>
+          <a href="#!" class="modal-action waves-effect waves-green btn">Save</a>
         </div>
       </div>
     </div>
@@ -223,6 +247,9 @@
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+    <script type="text/javascript" src="scripts/libraries/nouislider.min.js"></script>
+    <script type="text/javascript" src="scripts/libraries/wNumb.js"></script>
+    <script type="text/javascript" src="scripts/timerange.js"></script>
     <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase.js"></script>
     <script>
       // Initialize Firebase
@@ -234,7 +261,6 @@
       };
       firebase.initializeApp(config);
     </script>
-
     <script>
       $(document).ready(function(){
         // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
