@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>Pedal Business</title>
     <!--Import Google Icon Font-->
-    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
     <link rel="stylesheet" href="stylesheets/main.css">
@@ -70,7 +70,6 @@
               </div>
               <div class="event_list" data-day-id="0">
                 <ul>
-                  
                 </ul>
                 <a class="waves-effect waves-light btn add_event" data-day-id="0">Add</a>
                 <br>
@@ -203,19 +202,20 @@
             <textarea id="event_content" class="materialize-textarea"></textarea>
             <label for="event_content">Content</label>
           </div>
-          <div class="input-field">
-            <select id="event-type">
-              <option value="deal">This is a deal</option>
-              <option value="event">This is an event</option>
-            </select> 
-            
-          </div>
+          <span>
+            <input name="event_type" type="radio" id="deal_radio" value="deal" class="orange"/>
+            <label for="deal_radio" class="orange-text">Deal</label>
+          </span>
+          <span>
+            <input name="event_type" type="radio" id="event_radio" value="event"/>
+            <label for="event_radio" class="purple-text">Event</label>
+          </span>
 
 
         </div>
         <div class="modal-footer">
           <a href="#" class=" modal-close waves-effect waves-orange btn-flat">Cancel</a>
-          <a href="#!" class=" modal-action modal-close waves-effect waves-green btn">Save</a>
+          <a href="#!" class=" modal-action waves-effect waves-green btn">Save</a>
         </div>
       </div>
     </div>
