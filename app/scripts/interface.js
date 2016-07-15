@@ -53,16 +53,19 @@ $(function(){
         }
       });
 
-      $('.add_event').on('click tap', function(e) {
-        $('#event_modal').openModal();
-        //console.log($(e.target).data("dayId"));
-        dayId = $(e.target).data("dayId");
-      });
       $('.add_deal').on('click tap', function(e) {
         $('#deal_modal').openModal();
-        //console.log($(e.target).data("dayId"));
+        //console.log($(e.target)[0]);
         dayId = $(e.target).data("dayId");
       });
+
+      $('.add_event').on('click tap', function(e) {
+        $('#event_modal').openModal();
+        console.log($(e.target).data("dayId"));
+        dayId = $(e.target).data("dayId");
+      });
+
+      
 
 
       $('#deal_modal').find('.modal-action').on('click tap', function(){
