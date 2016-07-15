@@ -46,6 +46,14 @@
 
 .delete_event {
     cursor: pointer;
+    bottom: 0px;
+    right: 0px;
+    position: absolute;
+    display: none;
+}
+
+.card.hoverable:hover .delete_event {
+    display: block;
 }
 
 ::-webkit-scrollbar {

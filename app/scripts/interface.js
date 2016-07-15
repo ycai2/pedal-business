@@ -181,10 +181,11 @@ $(function(){
       function formatDealCard(card_id, card) {
         var formatted_card = document.createElement('li');
         formatted_card.innerHTML = '<div class="card hoverable">' + 
+
+                        '<i class="material-icons delete_event" data-deal-id='+ card_id +'>delete</i>' + 
+                
                         '<h6 class="card-title center-align">Deal</h6>' +
-                        '<div class="card-content">' + card.item + ' for $' + card.price+ '</div>' + 
-                        '<div class="right-align">' + 
-                          '<i class="material-icons delete_event" data-deal-id='+ card_id +'>delete</i>' + 
+                        '<div class="card-content">' + card.item + ' for $' + card.price + '</div>' +
                         '</div>';
         return formatted_card;
       }
