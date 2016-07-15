@@ -56,6 +56,14 @@
     display: block;
 }
 
+.btn-add {
+    display: none;
+}
+
+.btn-edit {
+    display: none;
+}
+
 ::-webkit-scrollbar {
     -webkit-appearance: none;
     width: 5px;
