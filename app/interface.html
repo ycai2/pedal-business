@@ -65,22 +65,6 @@
         </div>
         <div id="events" class="col s12">
           <div class="management-scrollbar">
-            <div class="management-outer grey lighten-3 sunday">
-              <div class="day-title">
-                <h5>Sunday</h5>
-              </div>
-              <div class="event_list" data-day-id="0">
-                <ul>
-                </ul>
-                  <a class='dropdown-button btn' data-hover="true" data-beloworigin="true" href='#' data-activates='add_special'>Add</a>
-                  <ul id='add_special' class='dropdown-content'>
-                    <li><a href="#!" class="add_event" data-day-id="0">Event</a></li>
-                    <li><a href="#!" class="add_deal" data-day-id="0">Deal</a></li>
-                  </ul>
-                <br>
-              </div>
-            </div>
-
             <div class="management-outer grey lighten-3 monday">
               <div class="day-title">
                 <h5>Monday</h5>
@@ -88,7 +72,11 @@
               <div class="event_list" data-day-id="1">
                 <ul>
                 </ul>
-                <a class="waves-effect waves-light btn add_event" data-day-id="1">Add</a>
+                <a class='dropdown-button btn' data-hover="true" data-beloworigin="true" href='#' data-activates='add_special'>Add</a>
+                <ul id='add_special' class='dropdown-content'>
+                  <li><a href="#!" class="add_event" data-day-id="1">Event</a></li>
+                  <li><a href="#!" class="add_deal" data-day-id="1">Deal</a></li>
+                </ul>
                 <br>
               </div>
             </div>
@@ -100,7 +88,11 @@
               <div class="event_list" data-day-id="2">
                 <ul>
                 </ul>
-                <a class="waves-effect waves-light btn add_event"  data-day-id="2">Add</a>
+                <a class='dropdown-button btn' data-hover="true" data-beloworigin="true" href='#' data-activates='add_special'>Add</a>
+                <ul id='add_special' class='dropdown-content'>
+                  <li><a href="#!" class="add_event" data-day-id="2">Event</a></li>
+                  <li><a href="#!" class="add_deal" data-day-id="2">Deal</a></li>
+                </ul>
                 <br>
               </div>
             </div>
@@ -112,7 +104,11 @@
               <div class="event_list" data-day-id="3">
                 <ul>
                 </ul>
-                <a class="waves-effect waves-light btn add_event"  data-day-id="3">Add</a>
+                <a class='dropdown-button btn' data-hover="true" data-beloworigin="true" href='#' data-activates='add_special'>Add</a>
+                <ul id='add_special' class='dropdown-content'>
+                  <li><a href="#!" class="add_event" data-day-id="3">Event</a></li>
+                  <li><a href="#!" class="add_deal" data-day-id="3">Deal</a></li>
+                </ul>
                 <br>
               </div>
             </div>
@@ -124,7 +120,11 @@
               <div class="event_list" data-day-id="4">
                 <ul>
                 </ul>
-                <a class="waves-effect waves-light btn add_event" data-day-id="4">Add</a>
+                <a class='dropdown-button btn' data-hover="true" data-beloworigin="true" href='#' data-activates='add_special'>Add</a>
+                <ul id='add_special' class='dropdown-content'>
+                  <li><a href="#!" class="add_event" data-day-id="4">Event</a></li>
+                  <li><a href="#!" class="add_deal" data-day-id="4">Deal</a></li>
+                </ul>
                 <br>
               </div>
             </div>
@@ -136,7 +136,11 @@
               <div class="event_list" data-day-id="5">
                 <ul>
                 </ul>
-                <a class="waves-effect waves-light btn add_event" data-day-id="5">Add</a>
+                <a class='dropdown-button btn' data-hover="true" data-beloworigin="true" href='#' data-activates='add_special'>Add</a>
+                <ul id='add_special' class='dropdown-content'>
+                  <li><a href="#!" class="add_event" data-day-id="5">Event</a></li>
+                  <li><a href="#!" class="add_deal" data-day-id="5">Deal</a></li>
+                </ul>
                 <br>
               </div>
             </div>
@@ -156,10 +160,30 @@
                     </div>
                   </li> -->
                 </ul>
-                <a class="waves-effect waves-light btn add_event" data-day-id="6">Add</a>
+                <a class='dropdown-button btn' data-hover="true" data-beloworigin="true" href='#' data-activates='add_special'>Add</a>
+                <ul id='add_special' class='dropdown-content'>
+                  <li><a href="#!" class="add_event" data-day-id="6">Event</a></li>
+                  <li><a href="#!" class="add_deal" data-day-id="6">Deal</a></li>
+                </ul>
                 <br>
               </div>
-            </div>  
+            </div> 
+
+            <div class="management-outer grey lighten-3 sunday">
+              <div class="day-title">
+                <h5>Sunday</h5>
+              </div>
+              <div class="event_list" data-day-id="0">
+                <ul>
+                </ul>
+                <a class='dropdown-button btn' data-hover="true" data-beloworigin="true" href='#' data-activates='add_special'>Add</a>
+                <ul id='add_special' class='dropdown-content'>
+                  <li><a href="#!" class="add_event" data-day-id="0">Event</a></li>
+                  <li><a href="#!" class="add_deal" data-day-id="0">Deal</a></li>
+                </ul>
+                <br>
+              </div>
+            </div> 
           </div>
           
         </div>
@@ -197,25 +221,6 @@
         <div id="analytics" class="col s12">Coming Soon!</div>
       </div>
 
-
-      <!-- Event Modal -->
-      <div id="event_modal" class="modal">
-        <div class="modal-content">
-          <div class="input-field">
-            <input id="event_title" type="text">
-            <label for="event_title">Title</label>
-          </div>
-          <div class="input-field">
-            <textarea id="event_content" class="materialize-textarea"></textarea>
-            <label for="event_content">Event Content</label>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <a href="#" class="modal-close waves-effect waves-orange btn-flat">Cancel</a>
-          <a href="#!" class="modal-action waves-effect waves-green btn">Save</a>
-        </div>
-      </div>
-
       <!-- Deal Modal -->
       <div id="deal_modal" class="modal">
         <div class="modal-content">
@@ -229,10 +234,11 @@
               <label for="item_price">Price</label>
             </div>
           </div>
-          <div class="time_range"></div>
+          <p>Served Time Range</p>
+          <div id="deal_time_range"></div>
           <br>
           <div class="center-align">
-            <span class="deal_start"></span> - <span class="deal_end"></span>
+            <span id="deal_start"></span> - <span id="deal_end"></span>
           </div>
         </div>
         <div class="modal-footer">
@@ -240,6 +246,32 @@
           <a href="#!" class="modal-action waves-effect waves-green btn">Save</a>
         </div>
       </div>
+
+      <!-- Event Modal -->
+      <div id="event_modal" class="modal">
+        <div class="modal-content">
+          <div class="input-field">
+            <input id="event_title" type="text">
+            <label for="event_title">Title</label>
+          </div>
+          <div class="input-field">
+            <textarea id="event_content" class="materialize-textarea"></textarea>
+            <label for="event_content">Event Content</label>
+          </div>
+          <p>Served Time Range</p>
+          <div id="event_time_range"></div>
+          <br>
+          <div class="center-align">
+            <span id="event_start"></span> - <span id="event_end"></span>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <a href="#" class="modal-close waves-effect waves-orange btn-flat">Cancel</a>
+          <a href="#!" class="modal-action waves-effect waves-green btn">Save</a>
+        </div>
+      </div>
+
+      
     </div>
 
 

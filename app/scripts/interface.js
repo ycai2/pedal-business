@@ -64,18 +64,37 @@ $(function(){
         dayId = $(e.target).data("dayId");
       });
 
-      
 
+      $('#deal_modal').find('.modal-action').on('click tap', function(){
+        if (0 <= dayId && dayId < 7) {
+          data.child('specials/deal/' + dayId).push({
+            item: $('#item_name').val(),
+            price: $('#item_price').val(),
+            start: $('#deal_start').text(),
+            end: $('#deal_end').text()
+
+          }).then(function() {
+            Materialize.toast('Deal added!', 3000);
+            $('#deal_modal').closeModal();
+            $('#item_name').val('');
+            $('#item_price').val('');   
+          }).catch(function() {
+            console.log('There was an error.');
+          });
+        }
+        else {
+          console.log('No dayId specified.');
+        }
+      });
 
       //Add event to Firebase
       $('#event_modal').find('.modal-action').on('click tap', function(){
-        //console.log($('#event-type').val());
-        //var type = $("input[name=event_type]:checked").val();
-        //console.log(type);
         if (0 <= dayId && dayId < 7) {
           data.child('specials/event/' + dayId).push({
             title: $('#event_title').val(),
-            content: $('#event_content').val()
+            content: $('#event_content').val(),
+            start: $('#deal_start').text(),
+            end: $('#deal_end').text()
           }).then(function() {
             Materialize.toast('Event added!', 3000);
             $('#event_modal').closeModal();
@@ -89,6 +108,8 @@ $(function(){
           console.log('No dayId specified.');
         }
       });
+
+
 
 
 
@@ -114,22 +135,28 @@ $(function(){
         
       });
 
+
+
+
+
+
       //function formatSpecials
       function createNewList(deals, events, day_id) {
         var list = document.createElement('ul');
         for (var deal_id in deals) {
-          var card = formatCard(deal_id, deals[deal_id]);
+          var card = formatDealCard(deal_id, deals[deal_id]);
           $(card).find('.card').addClass('orange lighten-2');    //change color
           list.appendChild(card);
 
           //Delete Listener
           $(card).find('.delete_event').on('click tap', function(){
-            dealId = $(this).data("eventId");
+            dealId = $(this).data("dealId");
             data.child('specials/deal/' + day_id + '/' + dealId).remove();
           });
         }
+
         for (var event_id in events) {
-          var card = formatCard(event_id, events[event_id]);
+          var card = formatEventCard(event_id, events[event_id]);
           $(card).find('.card').addClass('purple lighten-2');    //change color
           list.appendChild(card);
 
@@ -160,8 +187,20 @@ $(function(){
         return true;
       }
 
+      function formatDealCard(card_id, card) {
+        var formatted_card = document.createElement('li');
+        formatted_card.innerHTML = '<div class="card hoverable">' + 
+                        '<h6 class="card-title center-align">Deal</h6>' +
+                        '<div class="card-content">' + card.item + ' for $' + card.price+ '</div>' + 
+                        '<div class="right-align">' + 
+                          '<i class="material-icons delete_event" data-deal-id='+ card_id +'>delete</i>' + 
+                        '</div>';
+        return formatted_card;
+      }
+
+
       //generate a card with data
-      function formatCard(card_id, card) {
+      function formatEventCard(card_id, card) {
         var formatted_card = document.createElement('li');
         formatted_card.innerHTML = '<div class="card hoverable">' + 
                         '<h6 class="card-title center-align">' + card.title + '</h6>' + 

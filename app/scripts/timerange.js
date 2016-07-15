@@ -1,23 +1,39 @@
 $(document).ready(function() {
-  var slider = $('.time_range')[0];
-  var slider_val = [$('.deal_start')[0], $('.deal_end')[0]];
-  noUiSlider.create(slider, {
-   start: [0, 96],
-   connect: true,
-   step: 1,
-   range: {
-     'min': 0,
-     'max': 96
-   },
-   format: wNumb({
-     decimals: 0
-   }),
-   tooltips: false
-  });
 
-  slider.noUiSlider.on('update', function(values, handle){
-    slider_val[handle].innerHTML = formatTime(values[handle]);
-  });
+  createRangeSlider(
+    document.getElementById('deal_time_range'), 
+    document.getElementById('deal_start'),
+    document.getElementById('deal_end')
+  );
+  
+  createRangeSlider(
+    document.getElementById('event_time_range'),
+    document.getElementById('event_start'),
+    document.getElementById('event_end')
+  );
+
+  function createRangeSlider(range, start, end) {
+    var slider = range;
+    var slider_val = [start, end];
+
+    noUiSlider.create(slider, {
+      start: [0, 96],
+      connect: true,
+      step: 1,
+      range: {
+        'min': 0,
+        'max': 96
+      },
+      format: wNumb({
+        decimals: 0
+      }),
+      tooltips: false
+    });
+
+    slider.noUiSlider.on('update', function(values, handle){
+      slider_val[handle].innerHTML = formatTime(values[handle]);
+    });
+  }
 
   function formatTime(time) {
     if (time >= 0 && time <= 96 ) {
@@ -30,6 +46,6 @@ $(document).ready(function() {
     } else {
       return "invalid";
     }
-
   }
+
 });
