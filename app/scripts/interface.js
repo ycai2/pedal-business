@@ -54,8 +54,6 @@ $(function(){
       });
 
       $('.add_deal').on('click tap', function(e) {
-        $('.btn-add').css("display", "inline");
-        $('.btn-edit').css("display", "none");
         $('#deal_modal').openModal();
         //console.log($(e.target)[0]);
         dayId = $(e.target).data("dayId");
@@ -63,6 +61,7 @@ $(function(){
 
       $('.add_event').on('click tap', function(e) {
         $('#event_modal').openModal();
+        //console.log($(e.target).data("dayId"));
         dayId = $(e.target).data("dayId");
       });
 
@@ -130,6 +129,8 @@ $(function(){
         }
       });
 
+
+
       //function formatSpecials
       function createNewList(deals, events, day_id) {
         var list = document.createElement('ul');
@@ -142,46 +143,6 @@ $(function(){
           $(card).find('.delete_event').on('click tap', function(){
             dealId = $(this).data("dealId");
             data.child('specials/deal/' + day_id + '/' + dealId).remove();
-          });
-
-          //edit deal card
-          $(card).find('.card').on('click tap', function(){
-            var cardId = $(this).data("cardId");
-            var cardRef = 'specials/deal/' + day_id + '/' + cardId;
-            $('.btn-add').css("display", "none");
-            $('.btn-edit').css("display", "inline");
-
-            // open and set fields on modal
-            $('#deal_modal').openModal();
-            data.child(cardRef).once('value')
-            .then(function(snapshot) {
-              var deal_info = snapshot.val();
-              console.log(snapshot.val());
-                $('#item_name').val(deal_info.item);
-                $('#item_price').val(deal_info.price);
-                Materialize.updateTextFields();  //Update input boxes with Materialize
-            })
-            .catch(function(error) {
-              console.log(error.message);
-            });
-
-
-            // edit deal save button
-            $('#deal_modal').find('.modal-action-edit').on('click tap', function(){
-              
-              data.child(cardRef).set({
-                  item: $('#item_name').val(),
-                  price: $('#item_price').val(),
-                })
-                .then(function(){
-                  Materialize.toast('Deal updated!', 3000);
-                  $('#deal_modal').closeModal();
-                })
-                .catch(function(error){
-                  console.log(error.message);
-                })
-            });
-
           });
         }
 
@@ -217,15 +178,9 @@ $(function(){
         return true;
       }
 
-      // edit deal card when card is clicked
-      function editDealCard(){}
-
-      // edit event card when card is clicked
-      function editEventCard(){}
-
       function formatDealCard(card_id, card) {
         var formatted_card = document.createElement('li');
-        formatted_card.innerHTML = '<div class="card hoverable" data-card-id='+ card_id +'>' +
+        formatted_card.innerHTML = '<div class="card hoverable">' + 
 
                         '<i class="material-icons delete_event" data-deal-id='+ card_id +'>delete</i>' + 
                 
@@ -235,17 +190,17 @@ $(function(){
         return formatted_card;
       }
 
+
       //generate a card with data
       function formatEventCard(card_id, card) {
         var formatted_card = document.createElement('li');
-        formatted_card.innerHTML = '<div class="card hoverable" data-card-id='+ card_id +'>' + 
+        formatted_card.innerHTML = '<div class="card hoverable">' + 
                         '<h6 class="card-title center-align">' + card.title + '</h6>' + 
                         '<div class="card-content">' + 
                           '<p class="truncate">' + card.content + '</p>' + 
                         '</div>' +
                         '<div class="right-align">' + 
                           '<i class="material-icons delete_event" data-event-id='+ card_id +'>delete</i>' + 
-                        '</div>' +
                         '</div>';
         return formatted_card;
       }
