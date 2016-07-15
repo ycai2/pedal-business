@@ -19,13 +19,11 @@
     overflow-y: hidden;
     white-space: nowrap;
     padding: 5px;
-    overflow-x: scroll;
 }
 
 .management-outer {
     width: 300px;
     height: 400px;
-    display: inline-block;
     padding-right: 5px;
     padding-left: 5px;
     margin: 8px;
@@ -33,15 +31,8 @@
     overflow-x: hidden;
 }
 
-.test {
-    background-color: #eeeeee;
-    color: #222;
-    width: 290px;
-    overflow-y: hidden;
-    overflow-x: hidden;
-    position: relative;
-    z-index:10;
-    text-align: center;
+.day-wrapper {
+    display: inline-block;
 }
 
 .ul-padding {

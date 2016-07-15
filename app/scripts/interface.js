@@ -61,12 +61,9 @@ $(function(){
 
       $('.add_event').on('click tap', function(e) {
         $('#event_modal').openModal();
-        console.log($(e.target).data("dayId"));
+        //console.log($(e.target).data("dayId"));
         dayId = $(e.target).data("dayId");
       });
-
-      
-
 
       $('#deal_modal').find('.modal-action').on('click tap', function(){
         if (0 <= dayId && dayId < 7) {
@@ -112,11 +109,6 @@ $(function(){
         }
       });
 
-
-
-
-
-
       data.child('specials/').on('value', function(snapshot) {
         var deals = snapshot.child('deal').val();
         var events = snapshot.child('event').val();
@@ -135,11 +127,7 @@ $(function(){
           var new_list = createNewList(daily_deals, daily_events, i);
           day.replaceChild(new_list, day.children[0]);
         }
-        
       });
-
-
-
 
 
 
