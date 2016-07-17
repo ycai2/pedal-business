@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
     <link rel="stylesheet" href="stylesheets/main.css">
     <link rel="stylesheet" href="stylesheets/libraries/nouislider.css">
+    <script src="https://use.fontawesome.com/78eefa216f.js"></script>
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     
@@ -57,7 +58,7 @@
       <div class="row">
         <div class="col s12">
           <ul class="tabs">
-            <li class="tab col s3"><a href="#events" class="active">Events</a></li>
+            <li class="tab col s3 active"><a href="#events">Events</a></li>
             <li class="tab col s3"><a href="#menu">Menu</a></li>
             <li class="tab col s3"><a href="#profile">Profile</a></li>
             <li class="tab col s3 disabled"><a href="#analytics">Analytics</a></li>
@@ -67,17 +68,17 @@
           <div class="management-scrollbar">
             <div class="day-wrapper">
               <div class="day-title center-align">
-                <h5>Monday</h5>
+                <span>Monday</span>
+                <a class='dropdown-button' data-hover="true" href='#' data-activates='add_special_1'><i class="material-icons">add_circle_outline</i></a>
+                <ul id='add_special_1' class='dropdown-content'>
+                  <li><a href="#!" class="add_deal" data-day-id="1">Deal</a></li>
+                  <li><a href="#!" class="add_event" data-day-id="1">Event</a></li>
+                </ul>
               </div>
+
               <div class="management-outer grey lighten-3 monday">
-                
                 <div class="event_list" data-day-id="1">
                   <ul>
-                  </ul>
-                  <a class='dropdown-button btn' data-hover="true" href='#' data-activates='add_special_1'>Add</a>
-                  <ul id='add_special_1' class='dropdown-content'>
-                    <li><a href="#!" class="add_deal" data-day-id="1">Deal</a></li>
-                    <li><a href="#!" class="add_event" data-day-id="1">Event</a></li>
                   </ul>
                   <br>
                 </div>
@@ -86,18 +87,19 @@
 
             <div class="day-wrapper">
               <div class="day-title center-align">
-                  <h5>Tuesday</h5>
-                </div>
+                <span>Tuesday</span>
+                <a class='dropdown-button' data-hover="true" href='#' data-activates='add_special_2'><i class="material-icons">add_circle_outline</i></a>
+                  <ul id='add_special_2' class='dropdown-content'>
+                    <li><a href="#!" class="add_deal" data-day-id="2">Deal</a></li>
+                    <li><a href="#!" class="add_event" data-day-id="2">Event</a></li>  
+                  </ul>
+              </div>
               <div class="management-outer grey lighten-3 tuesday">
                 
                 <div class="event_list" data-day-id="2">
                   <ul>
                   </ul>
-                  <a class='dropdown-button btn' data-hover="true" href='#' data-activates='add_special_2'>Add</a>
-                  <ul id='add_special_2' class='dropdown-content'>
-                    <li><a href="#!" class="add_deal" data-day-id="2">Deal</a></li>
-                    <li><a href="#!" class="add_event" data-day-id="2">Event</a></li>  
-                  </ul>
+                  
                   <br>
                 </div>
               </div>
@@ -105,17 +107,17 @@
 
             <div class="day-wrapper">
               <div class="day-title center-align">
-                <h5>Wednesday</h5>
+                <span>Wednesday</span>
+                <a class='dropdown-button' data-hover="true" href='#' data-activates='add_special_3'><i class="material-icons">add_circle_outline</i></a>
+                <ul id='add_special_3' class='dropdown-content'>
+                  <li><a href="#!" class="add_deal" data-day-id="3">Deal</a></li>
+                  <li><a href="#!" class="add_event" data-day-id="3">Event</a></li>
+                </ul>
               </div>
               <div class="management-outer grey lighten-3 wednesday">
                 <div class="event_list" data-day-id="3">
                   <ul>
                   </ul>
-                  <a class='dropdown-button btn' data-hover="true" href='#' data-activates='add_special_3'>Add</a>
-                  <ul id='add_special_3' class='dropdown-content'>
-                    <li><a href="#!" class="add_deal" data-day-id="3">Deal</a></li>
-                    <li><a href="#!" class="add_event" data-day-id="3">Event</a></li>
-                  </ul>
                   <br>
                 </div>
               </div>
@@ -123,17 +125,17 @@
 
             <div class="day-wrapper">
               <div class="day-title center-align">
-                <h5>Thursday</h5>
+                <span>Thursday</span>
+                <a class='dropdown-button' data-hover="true" href='#' data-activates='add_special_4'><i class="material-icons">add_circle_outline</i></a>
+                <ul id='add_special_4' class='dropdown-content'>
+                  <li><a href="#!" class="add_deal" data-day-id="4">Deal</a></li>
+                  <li><a href="#!" class="add_event" data-day-id="4">Event</a></li>
+                </ul>
               </div>
               <div class="management-outer grey lighten-3 thursday">
                 <div class="event_list" data-day-id="4">
                   <ul>
                   </ul>
-                  <a class='dropdown-button btn' data-hover="true" href='#' data-activates='add_special_4'>Add</a>
-                  <ul id='add_special_4' class='dropdown-content'>
-                    <li><a href="#!" class="add_deal" data-day-id="4">Deal</a></li>
-                    <li><a href="#!" class="add_event" data-day-id="4">Event</a></li>
-                  </ul>
                   <br>
                 </div>
               </div>
@@ -141,19 +143,19 @@
 
             <div class="day-wrapper">
               <div class="day-title center-align">
-                <h5>Friday</h5>
+                <span>Friday</span>
+                <a class='dropdown-button' data-hover="true" href='#' data-activates='add_special_5'><i class="material-icons">add_circle_outline</i></a>
+                <ul id='add_special_5' class='dropdown-content'>
+                  <li><a href="#!" class="add_deal" data-day-id="5">Deal</a></li>
+                  <li><a href="#!" class="add_event" data-day-id="5">Event</a></li>
+                </ul>
               </div>
               <div class="management-outer grey lighten-3 friday">
                 
                 <div class="event_list" data-day-id="5">
                   <ul>
                   </ul>
-                  <a class='dropdown-button btn' data-hover="true" href='#' data-activates='add_special_5'>Add</a>
-                  <ul id='add_special_5' class='dropdown-content'>
-                    <li><a href="#!" class="add_deal" data-day-id="5">Deal</a></li>
-                    <li><a href="#!" class="add_event" data-day-id="5">Event</a></li>
-                    
-                  </ul>
+                  
                   <br>
                 </div>
               </div>
@@ -161,7 +163,13 @@
 
             <div class="day-wrapper">
               <div class="day-title center-align">
-                <h5>Saturday</h5>
+                <span>Saturday</span>
+                <a class='dropdown-button' data-hover="true" href='#' data-activates='add_special_6'><i class="material-icons">add_circle_outline</i></a>
+                <ul id='add_special_6' class='dropdown-content'>
+                  <li><a href="#!" class="add_deal" data-day-id="6">Deal</a></li>
+                  <li><a href="#!" class="add_event" data-day-id="6">Event</a></li>
+                  
+                </ul>
               </div>
               <div class="management-outer grey lighten-3 saturday">
                 <div class="event_list" data-day-id="6">
@@ -175,12 +183,7 @@
                       </div>
                     </li> -->
                   </ul>
-                  <a class='dropdown-button btn' data-hover="true" href='#' data-activates='add_special_6'>Add</a>
-                  <ul id='add_special_6' class='dropdown-content'>
-                    <li><a href="#!" class="add_deal" data-day-id="6">Deal</a></li>
-                    <li><a href="#!" class="add_event" data-day-id="6">Event</a></li>
-                    
-                  </ul>
+                  
                   <br>
                 </div>
               </div> 
@@ -188,24 +191,24 @@
 
             <div class="day-wrapper">
               <div class="day-title center-align">
-                <h5>Sunday</h5>
+                <span>Sunday</span>
+                <a class='dropdown-button' data-hover="true" href='#' data-activates='add_special_0'><i class="material-icons">add_circle_outline</i></a>
+                <ul id='add_special_0' class='dropdown-content'>
+                  <li><a href="#!" class="add_deal" data-day-id="0">Deal</a></li>
+                  <li><a href="#!" class="add_event" data-day-id="0">Event</a></li>
+                </ul>
               </div>
               <div class="management-outer grey lighten-3 sunday">
                 
                 <div class="event_list" data-day-id="0">
                   <ul>
                   </ul>
-                  <a class='dropdown-button btn' data-hover="true" href='#' data-activates='add_special_0'>Add</a>
-                  <ul id='add_special_0' class='dropdown-content'>
-                    <li><a href="#!" class="add_deal" data-day-id="0">Deal</a></li>
-                    <li><a href="#!" class="add_event" data-day-id="0">Event</a></li>
-                  </ul>
+                  
                   <br>
                 </div>
               </div> 
             </div>
           </div>
-          
         </div>
 
         

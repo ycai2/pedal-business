@@ -1,6 +1,5 @@
 $(function(){
   
-  //var dayofweek = ['sunday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
 
   firebase.auth().onAuthStateChanged(function(user) {
     //console.log(firebase.auth().currentUser);

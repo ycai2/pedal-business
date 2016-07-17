@@ -52,6 +52,14 @@
     display: none;
 }
 
+.day-title {
+    font-size: 36px;
+}
+
+.day-title>span {
+    padding-right: 5px;
+}
+
 .card.hoverable:hover .delete_event {
     display: block;
 }
