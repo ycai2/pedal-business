@@ -200,7 +200,7 @@ $(function(){
 
                         '<i class="material-icons delete_event" data-deal-id='+ card_id +'>delete</i>' + 
                 
-                        '<h6 class="card-title center-align">' + "$" + card.price + " " + card.item + '</h6>' +
+                        '<h6 class="card-title center-align">' + card.item + ": $" + card.price + '</h6>' +
                         '<div class="card-content">' + card.start + " - " + card.end + '</div>' +
                         '</div>';
         return formatted_card;
