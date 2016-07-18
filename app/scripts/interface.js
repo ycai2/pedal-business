@@ -1,5 +1,5 @@
 $(function(){
-  
+
 
   firebase.auth().onAuthStateChanged(function(user) {
     //console.log(firebase.auth().currentUser);
@@ -7,6 +7,8 @@ $(function(){
       console.log('Interface user:', user.uid);
       var data = firebase.database().ref('users/' + user.uid);
       var dayId, eventId = 0;
+
+      $('#login-btn').off();
 
       data.child('profile_info').once('value')
         .then(function(snapshot) {
@@ -136,32 +138,34 @@ $(function(){
       //function formatSpecials
       function createNewList(deals, events, day_id) {
         var list = document.createElement('ul');
-        for (var deal_id in deals) {
-          var card = formatDealCard(deal_id, deals[deal_id]);
-          $(card).find('.card').addClass('green lighten-1');
-          $(card).find('.card-content').addClass('green lighten-2');    //change color
-          list.appendChild(card);
-
-          //Delete Listener
-          $(card).find('.delete_event').on('click tap', function(){
-            dealId = $(this).data("dealId");
-            data.child('specials/deal/' + day_id + '/' + dealId).remove();
-          });
-        }
-
         for (var event_id in events) {
           var card = formatEventCard(event_id, events[event_id]);
           $(card).find('.card').addClass('amber');    //change color
           $(card).find('.card-content').addClass('amber lighten-1');
           list.appendChild(card);
 
-          //Delete Listener
+          //Delete 
           $(card).find('.delete_event').on('click tap', function(){
             eventId = $(this).data("eventId");
             //console.log('Deleted: ' + 'specials/event/' + day_id + '/' + eventId);
             data.child('specials/event/' + day_id + '/' + eventId).remove();
           });
         }
+
+        for (var deal_id in deals) {
+          var card = formatDealCard(deal_id, deals[deal_id]);
+          $(card).find('.card').addClass('green lighten-1');
+          $(card).find('.card-content').addClass('green lighten-2');    //change color
+          list.appendChild(card);
+
+          //Delete 
+          $(card).find('.delete_event').on('click tap', function(){
+            dealId = $(this).data("dealId");
+            data.child('specials/deal/' + day_id + '/' + dealId).remove();
+          });
+        }
+
+        
         return list;
       }
 

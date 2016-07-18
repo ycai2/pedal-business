@@ -17,12 +17,12 @@ $(document).ready(function() {
     var slider_val = [start, end];
 
     noUiSlider.create(slider, {
-      start: [0, 96],
+      start: [20, 116],
       connect: true,
       step: 1,
       range: {
-        'min': 0,
-        'max': 96
+        'min': 20,
+        'max': 116
       },
       format: wNumb({
         decimals: 0
@@ -36,10 +36,16 @@ $(document).ready(function() {
   }
 
   function formatTime(time) {
+    time %= 96
     if (time >= 0 && time <= 96 ) {
       var p = time < 48 ? "am" : "pm"; 
       var hour = Math.floor(time/4) % 12;
-      hour = hour < 10 ? "0"+hour : hour;
+      if (hour == 0) {
+        hour = "12";
+      }
+      else if (hour < 10) {
+        hour = "0" + hour;
+      }
       var min = (time%4) * 15;
       min = min < 10 ? "0"+min : min;
       return hour + ":" + min + " " + p;
