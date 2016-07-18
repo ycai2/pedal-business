@@ -7,8 +7,6 @@ $(function(){
       console.log('Interface user:', user.uid);
       var data = firebase.database().ref('users/' + user.uid);
       var dayId, eventId = 0;
-      var regEmail = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
-      var regPhonoe = /^\d{3}(-\d{3}-|\d{3})\d{4}$/;
 
       data.child('profile_info').once('value')
         .then(function(snapshot) {
@@ -33,7 +31,6 @@ $(function(){
           var businessAddress = $('#address').val();
           var businessEmail = $('#email').val();
           var businessPhone = $('#phone').val();
-
 
         if (isInfoValid(businessName, businessEmail, businessPhone)){
           data.child('profile_info').set({
@@ -65,21 +62,27 @@ $(function(){
       });
 
       $('#deal_modal').find('.modal-action').on('click tap', function(){
+        var regPrice = /^(\d*\.?\d{0,2})$/;
         if (0 <= dayId && dayId < 7) {
-          data.child('specials/deal/' + dayId).push({
-            item: $('#item_name').val(),
-            price: $('#item_price').val(),
-            start: $('#deal_start').text(),
-            end: $('#deal_end').text()
+          if (regPrice.test($('#item_price').val())){
+            data.child('specials/deal/' + dayId).push({
+              item: $('#item_name').val(),
+              price: $('#item_price').val(),
+              start: $('#deal_start').text(),
+              end: $('#deal_end').text()
 
-          }).then(function() {
-            Materialize.toast('Deal added!', 3000);
-            $('#deal_modal').closeModal();
-            $('#item_name').val('');
-            $('#item_price').val('');   
-          }).catch(function() {
-            console.log('There was an error.');
-          });
+            }).then(function() {
+              Materialize.toast('Deal added!', 3000);
+              $('#deal_modal').closeModal();
+              $('#item_name').val('');
+              $('#item_price').val('');   
+            }).catch(function() {
+              console.log('There was an error.');
+            });
+          }
+          else {
+            Materialize.toast('Please enter a valid price. E.g. “5.00"', 3000);
+          }
         }
         else {
           console.log('No dayId specified.');
@@ -164,6 +167,9 @@ $(function(){
 
       // business profile validation
       function isInfoValid(name, email, phone){
+        var regEmail = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
+        var regPhonoe = /^\d{3}(-\d{3}-|\d{3})\d{4}$/;
+
         if (!name){
           Materialize.toast('Please enter a business name!', 3000);
           return false;
@@ -185,8 +191,8 @@ $(function(){
 
                         '<i class="material-icons delete_event" data-deal-id='+ card_id +'>delete</i>' + 
                 
-                        '<h6 class="card-title center-align">Deal</h6>' +
-                        '<div class="card-content">' + card.item + ' for $' + card.price + '</div>' +
+                        '<h6 class="card-title center-align">' + "$" + card.price + " " + card.item + '</h6>' +
+                        '<div class="card-content">' + card.start + " - " + card.end + '</div>' +
                         '</div>';
         return formatted_card;
       }
@@ -198,6 +204,7 @@ $(function(){
         formatted_card.innerHTML = '<div class="card hoverable">' + 
                         '<h6 class="card-title center-align">' + card.title + '</h6>' + 
                         '<div class="card-content">' + 
+                          '<div>' + card.start + " - " + card.end + '</div>' +
                           '<p class="truncate">' + card.content + '</p>' + 
                         '</div>' +
                         '<div class="right-align">' + 
