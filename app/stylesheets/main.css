@@ -73,6 +73,9 @@
     -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
 }
 
-i.prefix {
-    margin-top: 5px;
+.input-field .prefix {
+    padding-top: 7px;
+    padding-left: 15px;
+    color: rgb(158,158,158);
 }
+
