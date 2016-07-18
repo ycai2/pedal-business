@@ -1,5 +1,5 @@
 $(function(){
-  
+
 
   firebase.auth().onAuthStateChanged(function(user) {
     //console.log(firebase.auth().currentUser);
@@ -9,6 +9,8 @@ $(function(){
       var dayId, eventId = 0;
       var regEmail = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
       var regPhonoe = /^\d{3}(-\d{3}-|\d{3})\d{4}$/;
+
+      $('#login-btn').off();
 
       data.child('profile_info').once('value')
         .then(function(snapshot) {
