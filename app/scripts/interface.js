@@ -66,7 +66,12 @@ $(function(){
       $('#deal_modal').find('.modal-action').on('click tap', function(){
         var regPrice = /^(\d*\.?\d{0,2})$/;
         if (0 <= dayId && dayId < 7) {
-          if (regPrice.test($('#item_price').val())){
+          var item_price = $('#item_price').val();
+          var item_name = $('#item_name').val();
+          if ((!item_price) || (!item_name)) {
+            Materialize.toast('Please enter all fields. ', 3000);
+          }
+          else if (regPrice.test(item_price)){
             data.child('specials/deal/' + dayId).push({
               item: $('#item_name').val(),
               price: $('#item_price').val(),
