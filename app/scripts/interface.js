@@ -135,7 +135,8 @@ $(function(){
         var list = document.createElement('ul');
         for (var deal_id in deals) {
           var card = formatDealCard(deal_id, deals[deal_id]);
-          $(card).find('.card').addClass('orange lighten-2');    //change color
+          $(card).find('.card').addClass('green lighten-1');
+          $(card).find('.card-content').addClass('green lighten-2');    //change color
           list.appendChild(card);
 
           //Delete Listener
@@ -147,7 +148,8 @@ $(function(){
 
         for (var event_id in events) {
           var card = formatEventCard(event_id, events[event_id]);
-          $(card).find('.card').addClass('purple lighten-2');    //change color
+          $(card).find('.card').addClass('amber');    //change color
+          $(card).find('.card-content').addClass('amber lighten-1');
           list.appendChild(card);
 
           //Delete Listener
