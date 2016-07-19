@@ -201,13 +201,15 @@ $(function(){
 
           //Delete 
           $(card).find('.delete_event').on('click tap', function(){
-            eventId = $(this).data("eventId");
-            data.child('specials/event/' + day_id + '/' + eventId).remove();
+            if (confirm("Are you sure you want to delete this event?")){
+              eventId = $(this).data("eventId");
+              data.child('specials/event/' + day_id + '/' + eventId).remove();
+            }
           });
 
           //edit event card
           $(card).find('.card-content').on('click tap', function(){
-            var cardId = $(this).find('i').data("eventId");
+            var cardId = $(this).siblings('i').data("eventId");
             var cardRef = 'specials/event/' + day_id + '/' + cardId;
             $('.btn-add').hide();
             $('.btn-edit').show();
@@ -239,13 +241,15 @@ $(function(){
 
           //Delete 
           $(card).find('.delete_event').on('click tap', function(){
-            dealId = $(this).data("dealId");
-            data.child('specials/deal/' + day_id + '/' + dealId).remove();
+            if (confirm("Are you sure you want to delete this deal?")){
+              dealId = $(this).data("dealId");
+              data.child('specials/deal/' + day_id + '/' + dealId).remove();
+            }
           });
 
           //edit deal card
           $(card).find('.card-content').on('click tap', function(){
-            var cardId = $(this).find('i').data("dealId");
+            var cardId = $(this).siblings('i').data("dealId");
             var cardRef = 'specials/deal/' + day_id + '/' + cardId;
             $('.btn-add').hide();
             $('.btn-edit').show();
@@ -297,8 +301,8 @@ $(function(){
                         '<h6 class="card-title center-align">' + card.item + ": $" + card.price + '</h6>' +
                         '<div class="card-content">' + 
                           card.start + " - " + card.end + 
-                          '<i class="material-icons delete_event" data-deal-id='+ card_id +'>delete</i>' + 
                         '</div>' + 
+                        '<i class="material-icons delete_event" data-deal-id='+ card_id +'>delete</i>' + 
                       '</div>';
         return formatted_card;
       }
@@ -313,8 +317,8 @@ $(function(){
                           
                           '<p class="truncate">' + card.content + '</p>' + 
                           '<div>' + card.start + " - " + card.end + '</div>' +
-                          '<i class="material-icons delete_event" data-event-id='+ card_id +'>delete</i>' +
                         '</div>' +
+                        '<i class="material-icons delete_event" data-event-id='+ card_id +'>delete</i>' +
                       '</div>';
         return formatted_card;
       }
