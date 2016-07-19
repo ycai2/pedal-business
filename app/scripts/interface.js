@@ -138,7 +138,21 @@ $(function(){
         }
       });
 
-
+      $('#deal_modal').find('.modal-action-edit').on('click tap', function(){
+        var cardRef = $('#deal_modal').data("edit");
+        console.log("cardRef=" + cardRef);
+        data.child(cardRef).set({
+            item: $('#item_name').val(),
+            price: $('#item_price').val(),
+          })
+          .then(function(){
+            Materialize.toast('Deal updated!', 3000);
+            $('#deal_modal').closeModal();
+          })
+          .catch(function(error){
+            console.log(error.message);
+          })
+      });
 
       //function formatSpecials
       function createNewList(deals, events, day_id) {
@@ -168,7 +182,35 @@ $(function(){
             dealId = $(this).data("dealId");
             data.child('specials/deal/' + day_id + '/' + dealId).remove();
           });
+
+          //edit deal card
+          $(card).find('.card').on('click tap', function(){
+            var cardId = $(this).data("cardId");
+            var cardRef = 'specials/deal/' + day_id + '/' + cardId;
+            $('.btn-add').hide();
+            $('.btn-edit').show();
+
+            // open and retrieve fields on modal
+            $('#deal_modal').openModal();
+            data.child(cardRef).once('value')
+            .then(function(snapshot) {
+              var deal_info = snapshot.val();
+                $('#item_name').val(deal_info.item);
+                $('#item_price').val(deal_info.price);
+                $('#deal_modal').data("edit", cardRef);
+                console.log($('#deal_modal').data("edit"));
+                Materialize.updateTextFields();  //Update input boxes with Materialize
+
+            })
+            .catch(function(error) {
+              console.log(error.message);
+            });
+
+          });
+
         }
+
+
 
         
         return list;
