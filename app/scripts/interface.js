@@ -1,32 +1,41 @@
 $(function(){
-
-
   firebase.auth().onAuthStateChanged(function(user) {
     //console.log(firebase.auth().currentUser);
     if (user) {
       console.log('Interface user:', user.uid);
       var data = firebase.database().ref('users/' + user.uid);
       var dayId, eventId = 0;
+      var deal_range, event_range;
 
       $('#login-btn').off();
 
       data.child('profile_info').once('value')
         .then(function(snapshot) {
           var profile_info = snapshot.val();
-
-            //Set profile fields
-            $('#business_name').val(profile_info.business_name);
-            $('#address').val(profile_info.address);
-            $('#email').val(profile_info.email);
-            $('#phone').val(profile_info.phone);
-            $('#delivery').prop('checked', profile_info.delivery);
-
-            Materialize.updateTextFields();  //Update input boxes with Materialize
-          
+          //Set profile fields
+          $('#business_name').val(profile_info.business_name);
+          $('#address').val(profile_info.address);
+          $('#email').val(profile_info.email);
+          $('#phone').val(profile_info.phone);
+          $('#delivery').prop('checked', profile_info.delivery);
+          Materialize.updateTextFields();  //Update input boxes with Materialize
+        
         })
         .catch(function(error) {
           console.log(error.message);
         });
+
+      deal_range = createRangeSlider(
+        document.getElementById('deal_time_range'), 
+        document.getElementById('deal_start'),
+        document.getElementById('deal_end')
+      );
+
+      event_range = createRangeSlider(
+        document.getElementById('event_time_range'),
+        document.getElementById('event_start'),
+        document.getElementById('event_end')
+      );
 
       $('.update-profile-btn').on('click tap', function() {
           var businessName = $('#business_name').val();
@@ -52,12 +61,14 @@ $(function(){
       });
 
       $('.add_deal').on('click tap', function(e) {
+
         $('#deal_modal').openModal();
         //console.log($(e.target)[0]);
         dayId = $(e.target).data("dayId");
       });
 
       $('.add_event').on('click tap', function(e) {
+        
         $('#event_modal').openModal();
         //console.log($(e.target).data("dayId"));
         dayId = $(e.target).data("dayId");
@@ -155,6 +166,8 @@ $(function(){
             //console.log('Deleted: ' + 'specials/event/' + day_id + '/' + eventId);
             data.child('specials/event/' + day_id + '/' + eventId).remove();
           });
+
+          $(card).find('')
         }
 
         for (var deal_id in deals) {

@@ -30,8 +30,6 @@ $(function(){
         var pw = $('#password').val();
         var reg_username = /^[a-z]+[a-z0-9-_]*[a-z0-9]+$/;
         $('#password').val("");          //clear password for security reason at front-end
-
-
         if (!username) {
           Materialize.toast("Please enter a username", 3000);
         }
