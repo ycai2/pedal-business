@@ -2,7 +2,6 @@ $(function(){
 
 
   firebase.auth().onAuthStateChanged(function(user) {
-    //console.log(firebase.auth().currentUser);
     if (user) {
       console.log('Interface user:', user.uid);
       var data = firebase.database().ref('users/' + user.uid);
@@ -55,7 +54,6 @@ $(function(){
         $('#item_name').val("");
         $('#item_price').val("");
         $('#deal_modal').openModal();
-        //console.log($(e.target)[0]);
         $('.btn-add').show();
         $('.btn-edit').hide();
         dayId = $(e.target).data("dayId");
@@ -67,7 +65,6 @@ $(function(){
         $('#event_modal').openModal();
         $('.btn-add').show();
         $('.btn-edit').hide();
-        //console.log($(e.target).data("dayId"));
         dayId = $(e.target).data("dayId");
       });
 
@@ -169,7 +166,6 @@ $(function(){
       // update event 
       $('#event_modal').find('.modal-action-edit').on('click tap', function(){
         var cardRef = $('#event_modal').data("editEvent");
-        console.log("cardRef=" + cardRef);
         data.child(cardRef).set({
             title: $('#event_title').val(),
             content: $('#event_content').val(),
@@ -197,7 +193,6 @@ $(function(){
           //Delete 
           $(card).find('.delete_event').on('click tap', function(){
             eventId = $(this).data("eventId");
-            //console.log('Deleted: ' + 'specials/event/' + day_id + '/' + eventId);
             data.child('specials/event/' + day_id + '/' + eventId).remove();
           });
 
@@ -205,7 +200,6 @@ $(function(){
           $(card).find('.card').on('click tap', function(){
             var cardId = $(this).find('i').data("eventId");
             var cardRef = 'specials/event/' + day_id + '/' + cardId;
-            console.log("cardRef=" + cardRef);
             $('.btn-add').hide();
             $('.btn-edit').show();
 
@@ -242,7 +236,6 @@ $(function(){
           $(card).find('.card').on('click tap', function(){
             var cardId = $(this).find('i').data("dealId");
             var cardRef = 'specials/deal/' + day_id + '/' + cardId;
-            console.log("cardRef=" + cardRef);
             $('.btn-add').hide();
             $('.btn-edit').show();
 
