@@ -1,6 +1,5 @@
 $(function(){
   firebase.auth().onAuthStateChanged(function(user) {
-    //console.log(firebase.auth().currentUser);
     if (user) {
       console.log('Interface user:', user.uid);
       var data = firebase.database().ref('users/' + user.uid);
@@ -61,19 +60,24 @@ $(function(){
       });
 
       $('.add_deal').on('click tap', function(e) {
-
+        $('#item_name').val("");
+        $('#item_price').val("");
+        $('.btn-add').show();
+        $('.btn-edit').hide();
         $('#deal_modal').openModal();
-        //console.log($(e.target)[0]);
         dayId = $(e.target).data("dayId");
       });
 
       $('.add_event').on('click tap', function(e) {
-        
+        $('#event_title').val("");
+        $('#event_content').val("");
+        $('.btn-add').show();
+        $('.btn-edit').hide();
         $('#event_modal').openModal();
-        //console.log($(e.target).data("dayId"));
         dayId = $(e.target).data("dayId");
       });
 
+      // add deal to firebase
       $('#deal_modal').find('.modal-action').on('click tap', function(){
         var regPrice = /^(\d*\.?\d{0,2})$/;
         if (0 <= dayId && dayId < 7) {
@@ -129,6 +133,7 @@ $(function(){
         }
       });
 
+
       data.child('specials/').on('value', function(snapshot) {
         var deals = snapshot.child('deal').val();
         var events = snapshot.child('event').val();
@@ -149,7 +154,41 @@ $(function(){
         }
       });
 
+      // update deal 
+      $('#deal_modal').find('.modal-action-edit').on('click tap', function(){
+        var cardRef = $('#deal_modal').data("editDeal");
+        data.child(cardRef).set({
+            item: $('#item_name').val(),
+            price: $('#item_price').val(),
+            start: $('#deal_start').text(),
+            end: $('#deal_end').text()
+          })
+          .then(function(){
+            Materialize.toast('Deal updated!', 3000);
+            $('#deal_modal').closeModal();
+          })
+          .catch(function(error){
+            console.log(error.message);
+          })
+      });
 
+      // update event 
+      $('#event_modal').find('.modal-action-edit').on('click tap', function(){
+        var cardRef = $('#event_modal').data("editEvent");
+        data.child(cardRef).set({
+            title: $('#event_title').val(),
+            content: $('#event_content').val(),
+            start: $('#event_start').text(),
+            end: $('#event_end').text()
+          })
+          .then(function(){
+            Materialize.toast('Event updated!', 3000);
+            $('#event_modal').closeModal();
+          })
+          .catch(function(error){
+            console.log(error.message);
+          })
+      });
 
       //function formatSpecials
       function createNewList(deals, events, day_id) {
@@ -163,11 +202,33 @@ $(function(){
           //Delete 
           $(card).find('.delete_event').on('click tap', function(){
             eventId = $(this).data("eventId");
-            //console.log('Deleted: ' + 'specials/event/' + day_id + '/' + eventId);
             data.child('specials/event/' + day_id + '/' + eventId).remove();
           });
 
-          $(card).find('')
+          //edit event card
+          $(card).find('.card-content').on('click tap', function(){
+            var cardId = $(this).find('i').data("eventId");
+            var cardRef = 'specials/event/' + day_id + '/' + cardId;
+            $('.btn-add').hide();
+            $('.btn-edit').show();
+
+            // open and retrieve fields on modal
+            
+            data.child(cardRef).once('value')
+              .then(function(snapshot) {
+                var event_info = snapshot.val();
+                  $('#event_title').val(event_info.title);
+                  $('#event_content').val(event_info.content);
+                  $('#event_modal').data("editEvent", cardRef);
+                  Materialize.updateTextFields();  //Update input boxes with Materialize
+                  setTimeRange(event_range, event_info.start, event_info.end);
+
+              })
+              .catch(function(error) {
+                console.log(error.message);
+              });
+            $('#event_modal').openModal();
+          });
         }
 
         for (var deal_id in deals) {
@@ -181,9 +242,32 @@ $(function(){
             dealId = $(this).data("dealId");
             data.child('specials/deal/' + day_id + '/' + dealId).remove();
           });
-        }
 
-        
+          //edit deal card
+          $(card).find('.card-content').on('click tap', function(){
+            var cardId = $(this).find('i').data("dealId");
+            var cardRef = 'specials/deal/' + day_id + '/' + cardId;
+            $('.btn-add').hide();
+            $('.btn-edit').show();
+
+            // open and retrieve fields on modal
+            
+            data.child(cardRef).once('value')
+              .then(function(snapshot) {
+                var deal_info = snapshot.val();
+                $('#item_name').val(deal_info.item);
+                $('#item_price').val(deal_info.price);
+                $('#deal_modal').data("editDeal", cardRef);
+                Materialize.updateTextFields();  //Update input boxes with Materialize
+                setTimeRange(deal_range, deal_info.start, deal_info.end);
+
+              })
+              .catch(function(error) {
+                console.log(error.message);
+              });
+            $('#deal_modal').openModal(); 
+          });
+        }
         return list;
       }
 
@@ -210,28 +294,28 @@ $(function(){
       function formatDealCard(card_id, card) {
         var formatted_card = document.createElement('li');
         formatted_card.innerHTML = '<div class="card hoverable">' + 
-
-                        '<i class="material-icons delete_event" data-deal-id='+ card_id +'>delete</i>' + 
-                
                         '<h6 class="card-title center-align">' + card.item + ": $" + card.price + '</h6>' +
-                        '<div class="card-content">' + card.start + " - " + card.end + '</div>' +
-                        '</div>';
+                        '<div class="card-content">' + 
+                          card.start + " - " + card.end + 
+                          '<i class="material-icons delete_event" data-deal-id='+ card_id +'>delete</i>' + 
+                        '</div>' + 
+                      '</div>';
         return formatted_card;
       }
-
 
       //generate a card with data
       function formatEventCard(card_id, card) {
         var formatted_card = document.createElement('li');
         formatted_card.innerHTML = '<div class="card hoverable">' + 
+                         
                         '<h6 class="card-title center-align">' + card.title + '</h6>' + 
                         '<div class="card-content">' + 
-                          '<div>' + card.start + " - " + card.end + '</div>' +
+                          
                           '<p class="truncate">' + card.content + '</p>' + 
+                          '<div>' + card.start + " - " + card.end + '</div>' +
+                          '<i class="material-icons delete_event" data-event-id='+ card_id +'>delete</i>' +
                         '</div>' +
-                        '<div class="right-align">' + 
-                          '<i class="material-icons delete_event" data-event-id='+ card_id +'>delete</i>' + 
-                        '</div>';
+                      '</div>';
         return formatted_card;
       }
     } 

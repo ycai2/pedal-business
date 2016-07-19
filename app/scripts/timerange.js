@@ -24,9 +24,8 @@ function createRangeSlider(range, start_elm, end_elm) {
 }
 
 function formatTime(time) {
-  time %= 96
-  if (time >= 0 && time <= 96 ) {
-    var p = time < 48 ? "am" : "pm"; 
+  if (time >= 20 && time < 116 ) {
+    var p = ((time >= 48) && (time < 96)) ? "pm" : "am"; 
     var hour = Math.floor(time/4) % 12;
     if (hour == 0) {
       hour = "12";
@@ -37,6 +36,8 @@ function formatTime(time) {
     var min = (time%4) * 15;
     min = min < 10 ? "0"+min : min;
     return hour + ":" + min + " " + p;
+  } else if (time == 116) {
+    return "04:59 am";
   } else {
     return "invalid";
   }
@@ -51,11 +52,16 @@ function setTimeRange(slider, start, end) {
 
 function decodeTime(time) {
   var p = time.split(' ')[1];
-  var start = time.substring(0, 2);
-  var end = time.substring(3, 5);
-  var result = parseInt(start) * 4 + Math.floor(parseInt(end) / 15);
+  var hour = parseInt(time.substring(0, 2));
+  hour %= 12;
+  var min = parseInt(time.substring(3, 5));
+  var result = hour * 4 + Math.floor(min / 15);
+
   if (p == 'pm') {
     result += 48;
+  }
+  if (result < 20) {
+    result += 96;
   }
   return result;
 }

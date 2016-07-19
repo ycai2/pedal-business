@@ -2,8 +2,7 @@
   width: 50px;
 }
 
-.hidden
-{
+.hidden {
    display: none
 }
 
@@ -57,6 +56,14 @@
 
 .day-title>span {
     padding-right: 5px;
+}
+
+.btn-edit {
+    display: none;
+}
+
+.btn-add {
+    display: none;
 }
 
 .card.hoverable:hover .delete_event {
