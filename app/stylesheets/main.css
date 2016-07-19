@@ -59,6 +59,14 @@
     padding-right: 5px;
 }
 
+.btn-edit {
+    display: none;
+}
+
+.btn-add {
+    display: none;
+}
+
 .card.hoverable:hover .delete_event {
     display: block;
 }
