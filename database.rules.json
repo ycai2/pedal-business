@@ -2,9 +2,9 @@
   "rules": {
     "users": {
       "$uid": {
-        ".read": "$uid === auth.uid",
+        ".read": true,
         ".write": "$uid === auth.uid",
-        "events": {
+        "specials": {
           ".read": true,
           ".write": "$uid === auth.uid"
         },
